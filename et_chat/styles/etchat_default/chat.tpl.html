@@ -10,7 +10,6 @@
   <script src="js/scriptaculous.js" type="text/javascript"></script>
   <script src="js/chat.js" type="text/javascript"></script>
   <script src="./?MessagesForJs" type="text/javascript"></script>
-  <script type="text/javascript" src="js/soundmanager2-nodebug-jsmin.js"></script>
   <link href="styles/<?php echo $_SESSION['etchat_'.$this->_prefix.'style']; ?>/style.css" rel="stylesheet" type="text/css"/>
 
 <!-- window.js Class zum erzeugen der Fenster -->
@@ -21,10 +20,6 @@
 <script type="text/javascript">
 
 var chatObj;
-
-soundManager.url = 'sound/swf/'; // path to directory containing SoundManager2 .SWF file
-soundManager.debugMode = false;
-
 window.onload = function() {
 	chatObj = new ET_Chat();
 	chatObj.messages_im_chat=<?php echo $_SESSION['etchat_'.$this->_prefix.'anz_messages_im_chat']; ?>;
@@ -41,7 +36,6 @@ window.onload = function() {
 	chatObj.set_dynamic_height=true; // sonst hat das ganze Chat eine feste Hoehe
 	chatObj.allow_nick_registration=<?php echo ($this->_allow_nick_registration) ? "true" : "false"; ?>;
 	chatObj.textcolor='<?php echo $_SESSION['etchat_'.$this->_prefix.'textcolor']; ?>';
-	chatObj.soundManager = soundManager;
 	chatObj.sound_status = '<?php echo $this->_messages_sound; ?>';
 	chatObj.set_sys_messages = <?php echo ($_SESSION['etchat_'.$this->_prefix.'sys_messages']) ? "true" : "false"; ?>; 
 	chatObj.random_user_number = <?php echo $_SESSION['etchat_'.$this->_prefix.'random_user_number']; ?>;
@@ -54,6 +48,7 @@ window.onload = function() {
 }
 
 </script>
+
 </head>
 <body id="body_id">
 <div id="rahmen_um_alles">

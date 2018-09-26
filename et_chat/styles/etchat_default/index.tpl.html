@@ -23,7 +23,7 @@
   <input type="hidden" name="<?php echo $_SESSION[$this->_prefix.'set_check']; ?>" value="<?php echo $this->aktuell_date_u; ?>" />
 
   <?php echo $this->lang->name[0]->tagData; ?><br />
-  <input type="text" name="username" id="username" value="" maxlength="100" pattern="^[a-zA-Z0-9.-_*]+( [a-zA-Z0-9.-_*]+)*$"/>
+  <input type="text" name="username" id="username" value="" maxlength="100" />
   <br />
   <br />
   <div id="lay_pw" style="display:none">
@@ -41,7 +41,7 @@
   <option value="f"><?php echo $this->lang->sex[2]->tagData; ?></option>
   </select>
   <br /><br /></div>
-  <input type="submit" name="go" id="submit_button" value="<?php echo $this->lang->submit[0]->tagData; ?>" />
+  <input type="submit" id="submit_button" name="go" value="<?php echo $this->lang->submit[0]->tagData; ?>" />
 
   </form>
   <br /><br />
