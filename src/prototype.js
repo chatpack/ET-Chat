@@ -57,6 +57,9 @@ var Prototype = {
   K: function(x) { return x }
 };
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Prototype )) { window.Prototype = Prototype; }
+
 if (Prototype.Browser.MobileSafari)
   Prototype.BrowserFeatures.SpecificElementExtensions = false;
 /* Based on Alex Arnell's inheritance implementation. */
@@ -136,6 +139,10 @@ var Class = (function() {
     }
   };
 })();
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Class )) { window.Class = Class; }
+
 (function() {
 
   var _toString = Object.prototype.toString,
@@ -341,6 +348,10 @@ var Class = (function() {
     isUndefined:   isUndefined
   });
 })();
+
+// Bundled usage (browser + webpack)
+// if (( window ) && ( ! window.xxx )) { window.xxx = xxx; }
+
 Object.extend(Function.prototype, (function() {
   var slice = Array.prototype.slice;
 
@@ -430,8 +441,7 @@ Object.extend(Function.prototype, (function() {
   }
 })());
 
-
-
+// modification of Date.prototype
 (function(proto) {
 
 
@@ -455,11 +465,12 @@ Object.extend(Function.prototype, (function() {
 })(Date.prototype);
 
 
+// modification of RegExp.prototype
 RegExp.prototype.match = RegExp.prototype.test;
-
 RegExp.escape = function(str) {
   return String(str).replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
 };
+
 var PeriodicalExecuter = Class.create({
   initialize: function(callback, frequency) {
     this.callback = callback;
@@ -496,6 +507,10 @@ var PeriodicalExecuter = Class.create({
     }
   }
 });
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.PeriodicalExecuter )) { window.PeriodicalExecuter = PeriodicalExecuter; }
+
 Object.extend(String, {
   interpret: function(value) {
     return value == null ? '' : String(value);
@@ -794,7 +809,13 @@ var Template = Class.create({
 });
 Template.Pattern = /(^|.|\r|\n)(#\{(.*?)\})/;
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Template )) { window.Template = Template; }
+
 var $break = { };
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.$break )) { window.$break = $break; }
 
 var Enumerable = (function() {
   function each(iterator, context) {
@@ -1000,14 +1021,6 @@ var Enumerable = (function() {
     return '#<Enumerable:' + this.toArray().inspect() + '>';
   }
 
-
-
-
-
-
-
-
-
   return {
     each:       each,
     eachSlice:  eachSlice,
@@ -1042,6 +1055,9 @@ var Enumerable = (function() {
   };
 })();
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Enumerable )) { window.Enumerable = Enumerable; }
+
 function $A(iterable) {
   if (!iterable) return [];
   if ('toArray' in Object(iterable)) return iterable.toArray();
@@ -1050,6 +1066,8 @@ function $A(iterable) {
   return results;
 }
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.$A )) { window.$A = $A; }
 
 function $w(string) {
   if (!Object.isString(string)) return [];
@@ -1057,9 +1075,12 @@ function $w(string) {
   return string ? string.split(/\s+/) : [];
 }
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.$w )) { window.$w = $w; }
+
+
+// modification of Array.prototype
 Array.from = $A;
-
-
 (function() {
   var arrayProto = Array.prototype,
       slice = arrayProto.slice,
@@ -1124,7 +1145,6 @@ Array.from = $A;
       return array.detect(function(value) { return item === value });
     });
   }
-
 
   function clone() {
     return slice.call(this, 0);
@@ -1198,9 +1218,13 @@ Array.from = $A;
   if (!arrayProto.indexOf) arrayProto.indexOf = indexOf;
   if (!arrayProto.lastIndexOf) arrayProto.lastIndexOf = lastIndexOf;
 })();
+
 function $H(object) {
   return new Hash(object);
 };
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.$H )) { window.$H = $H; }
 
 var Hash = Class.create(Enumerable, (function() {
   function initialize(object) {
@@ -1235,8 +1259,6 @@ var Hash = Class.create(Enumerable, (function() {
   function toObject() {
     return Object.clone(this._object);
   }
-
-
 
   function keys() {
     return this.pluck('key');
@@ -1318,6 +1340,11 @@ var Hash = Class.create(Enumerable, (function() {
 })());
 
 Hash.from = $H;
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Hash )) { window.Hash = Hash; }
+
+// modification of Number.prototype
 Object.extend(Number.prototype, (function() {
   function toColorPart() {
     return this.toPaddedString(2, 16);
@@ -1369,6 +1396,9 @@ function $R(start, end, exclusive) {
   return new ObjectRange(start, end, exclusive);
 }
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.$R )) { window.$R = $R; }
+
 var ObjectRange = Class.create(Enumerable, (function() {
   function initialize(start, end, exclusive) {
     this.start = start;
@@ -1399,10 +1429,8 @@ var ObjectRange = Class.create(Enumerable, (function() {
   };
 })());
 
-
-
-var Abstract = { };
-
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.ObjectRange )) { window.ObjectRange = ObjectRange; }
 
 var Try = {
   these: function() {
@@ -1419,6 +1447,9 @@ var Try = {
     return returnValue;
   }
 };
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Try )) { window.Try = Try; }
 
 var Ajax = {
   getTransport: function() {
@@ -1484,6 +1515,7 @@ Ajax.Base = Class.create({
       this.options.parameters = this.options.parameters.toObject();
   }
 });
+
 Ajax.Request = Class.create(Ajax.Base, {
   _complete: false,
 
@@ -1653,13 +1685,6 @@ Ajax.Request = Class.create(Ajax.Base, {
 Ajax.Request.Events =
   ['Uninitialized', 'Loading', 'Loaded', 'Interactive', 'Complete'];
 
-
-
-
-
-
-
-
 Ajax.Response = Class.create({
   initialize: function(request){
     this.request = request;
@@ -1812,6 +1837,8 @@ Ajax.PeriodicalUpdater = Class.create(Ajax.Base, {
   }
 });
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Ajax )) { window.Ajax = Ajax; }
 
 function $(element) {
   if (arguments.length > 1) {
@@ -1824,6 +1851,9 @@ function $(element) {
   return Element.extend(element);
 }
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.$ )) { window.$ = $; }
+
 if (Prototype.BrowserFeatures.XPath) {
   document._getElementsByXPath = function(expression, parentElement) {
     var results = [];
@@ -1834,8 +1864,6 @@ if (Prototype.BrowserFeatures.XPath) {
     return results;
   };
 }
-
-/*--------------------------------------------------------------------------*/
 
 if (!Node) var Node = { };
 
@@ -1855,8 +1883,6 @@ if (!Node.ELEMENT_NODE) {
     NOTATION_NODE: 12
   });
 }
-
-
 
 (function(global) {
   function shouldUseCache(tagName, attributes) {
@@ -2733,7 +2759,6 @@ else if (Prototype.Browser.IE) {
       }
     })();
   }
-
 }
 
 else if (Prototype.Browser.Gecko && /rv:1\.8\.0/.test(navigator.userAgent)) {
@@ -3054,7 +3079,6 @@ Element.addMethods = function(methods) {
   if (Element.extend.refresh) Element.extend.refresh();
   Element.cache = { };
 };
-
 
 document.viewport = {
 
@@ -3707,7 +3731,6 @@ Element.addMethods({
     return $(document.body);
   }
 
-
   function cumulativeOffset(element) {
     element = $(element);
     var valueT = 0, valueL = 0;
@@ -3871,7 +3894,6 @@ Element.addMethods({
     };
   }
 
-
   Element.addMethods({
     getLayout:              getLayout,
     measure:                measure,
@@ -3916,10 +3938,14 @@ Element.addMethods({
     });
   }
 })();
-window.$$ = function() {
+
+var $$ = function() {
   var expression = $A(arguments).join(', ');
   return Prototype.Selector.select(expression, document);
 };
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.$$ )) { window.$$ = $$; }
 
 Prototype.Selector = (function() {
 
@@ -3960,6 +3986,7 @@ Prototype.Selector = (function() {
     extendElement: Element.extend
   };
 })();
+
 /*!
  * Sizzle CSS Selector Engine - v1.0
  *  Copyright 2009, The Dojo Foundation
@@ -4933,14 +4960,12 @@ var posProcess = function(selector, context){
 	return Sizzle.filter( later, tmpSet );
 };
 
-
 window.Sizzle = Sizzle;
-
 })();
 
 Prototype._original_property = window.Sizzle;
 
-;(function(engine) {
+(function(engine) {
   var extendElements = Prototype.Selector.extendElements;
 
   function select(selector, scope) {
@@ -4956,7 +4981,8 @@ Prototype._original_property = window.Sizzle;
   Prototype.Selector.match = match;
 })(Sizzle);
 
-window.Sizzle = Prototype._original_property;
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Sizzle )) { window.Sizzle = Prototype._original_property; }
 delete Prototype._original_property;
 
 var Form = {
@@ -4999,6 +5025,9 @@ var Form = {
     });
   }
 };
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Form )) { window.Form = Form; }
 
 Form.Methods = {
   serialize: function(form, options) {
@@ -5087,9 +5116,6 @@ Form.Methods = {
   }
 };
 
-/*--------------------------------------------------------------------------*/
-
-
 Form.Element = {
   focus: function(element) {
     $(element).focus();
@@ -5167,9 +5193,13 @@ Form.Element.Methods = {
 
 var Field = Form.Element;
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Field )) { window.Field = Field; }
+
 var $F = Form.Element.Methods.getValue;
 
-/*--------------------------------------------------------------------------*/
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.$F )) { window.$F = $F; }
 
 Form.Element.Serializers = (function() {
   function input(element, value) {
@@ -5245,6 +5275,10 @@ Form.Element.Serializers = (function() {
 
 /*--------------------------------------------------------------------------*/
 
+var Abstract = { };
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Abstract )) { window.Abstract = Abstract; }
 
 Abstract.TimedObserver = Class.create(PeriodicalExecuter, {
   initialize: function($super, element, frequency, callback) {
@@ -5327,6 +5361,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
     return Form.serialize(this.element);
   }
 });
+
 (function() {
 
   var Event = {
@@ -5854,6 +5889,9 @@ Hash.toQueryString = Object.toQueryString;
 
 var Toggle = { display: Element.toggle };
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Toggle )) { window.Toggle = Toggle; }
+
 Element.Methods.childOf = Element.Methods.descendantOf;
 
 var Insertion = {
@@ -5874,7 +5912,13 @@ var Insertion = {
   }
 };
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Insertion )) { window.Insertion = Insertion; }
+
 var $continue = new Error('"throw $continue" is deprecated, use "return" instead');
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.$continue )) { window.$continue = $continue; }
 
 var Position = {
   includeScrollOffsets: false,
@@ -5953,7 +5997,8 @@ var Position = {
   }
 };
 
-/*--------------------------------------------------------------------------*/
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Position )) { window.Position = Position; }
 
 if (!document.getElementsByClassName) document.getElementsByClassName = function(instanceMethods){
   function iter(name) {
@@ -6026,7 +6071,7 @@ Object.extend(Element.ClassNames.prototype, Enumerable);
 /*--------------------------------------------------------------------------*/
 
 (function() {
-  window.Selector = Class.create({
+  var Selector = Class.create({
     initialize: function(expression) {
       this.expression = expression.strip();
     },
@@ -6078,4 +6123,8 @@ Object.extend(Element.ClassNames.prototype, Enumerable);
       return Prototype.Selector.select(selector, element || document);
     }
   });
+
+  // Bundled usage (browser + webpack)
+  if (( window ) && ( ! window.Selector )) { window.Selector = Selector; }
+
 })();
