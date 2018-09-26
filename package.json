@@ -1,0 +1,28 @@
+{
+  "name": "et_chat",
+  "description": "et_chat clientside javascript",
+  "version": "0.0.1",
+  "license": "CC-BY-NC-2.0",
+  "private": true,
+  "author": {
+    "name": "SEDesign - Barney Rubble",
+    "email": "info<at>sedesign<dot>de",
+    "url": "http://barnyrubble.tumblr.com/"
+  },
+  "contributors": [
+    "Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)",
+    "Sam Stephenson (http://www.prototypejs.org/)",
+    "Sebastien Gruhier (http://xilinus.com, http://itseb.com)",
+    "Adam A. Flynn (http://www.criticaldevelopment.net/xml/)",
+    "Gerald Saiger (http://www.flutsch-media.com)",
+    "Scott Schiller (schillmania.com) (http://www.schillmania.com/projects/soundmanager2/)",
+    "chatpack (chatpack@outlook.de)"
+  ],
+  "scripts": {
+    "pack": "webpack  --config config.webpack/webpack.config.js"
+  },
+  "devDependencies": {
+    "webpack": "4.20.1",
+    "webpack-cli": "3.1.1"
+  }
+}
