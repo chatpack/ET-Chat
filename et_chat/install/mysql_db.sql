@@ -232,7 +232,7 @@ CREATE TABLE  ###prefix###etchat_config (
 --
 
 INSERT INTO ###prefix###etchat_config (etchat_config_id, etchat_config_reloadsequenz, etchat_config_messages_im_chat, etchat_config_style, etchat_config_loeschen_nach, etchat_config_lang) VALUES
-(1, 4000, 22, 'etchat_white', 1, 'lang_de.xml');
+(1, 4000, 22, 'etchat_default', 1, 'lang_de.xml');
 
 -- limit --
 DROP TABLE IF EXISTS ###prefix###etchat_kick_user;
