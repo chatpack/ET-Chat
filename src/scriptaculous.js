@@ -53,6 +53,8 @@ var Scriptaculous = {
        throw("script.aculo.us requires the Prototype JavaScript framework >= " +
         Scriptaculous.REQUIRED_PROTOTYPE);
 
+    // load rest of scriptaculous scripts, if dom contains <script src="*scriptaculous*"
+    // ... which will not happen if scriptaculous is part of a webpacked javascript file. 
     var js = /scriptaculous\.js(\?.*)?$/;
     $$('script[src]').findAll(function(s) {
       return s.src.match(js);
