@@ -40,5 +40,15 @@ npm install --save-dev webpack
 npm install --save-dev webpack-cli</code>
 ```
 
+## Ausführen
+Die Javascriptdateien für das Deploymentverzeichnis werden mittels <code>npm</code> erstellt.
+Dazu verfügt die Datei package.json über den "script"-Eintrag <code>pack</code>
+```cmd
+npm run pack
+```
+Im Idealfall befinden sich die fertigen Javascriptdateien nun im Ordner PROJ_ROOT/et_chat/js.
+
+Das gesamte Verzeichnis kann nun zum Testsystem (IIS/Apache/sonstwas) übertragen und getestet werden.
+
 ## GIT
 Abhängig von der verwendeten nodejs-Version sollte die Datei .gitignore angepasst werden.
