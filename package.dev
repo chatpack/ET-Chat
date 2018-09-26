@@ -1,0 +1,21 @@
+{
+  "name": "et_chat",
+  "description": "et_chat clientside javascript",
+  "version": "3.0.7",
+  "license": "CC-BY-NC-2.0",
+  "private": true,
+  "author": {
+    "name": "<SEDesign /> - Evgeni Tcherkasski",
+    "email": "info<at>sedesign<dot>de",
+    "url": "http://barnyrubble.tumblr.com/"
+  },
+  "contributors": [
+    "Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)",
+    "Sam Stephenson (http://www.prototypejs.org/)",
+    "Sebastien Gruhier (http://xilinus.com, http://itseb.com)",
+    "Adam A. Flynn (http://www.criticaldevelopment.net/xml/)",
+    "Gerald Saiger (http://www.flutsch-media.com)",
+    "Scott Schiller (schillmania.com) (http://www.schillmania.com/projects/soundmanager2/)",
+    "chatpack (chatpack<at>outlook.de)"
+  ]
+}
