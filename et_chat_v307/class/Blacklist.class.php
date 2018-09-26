@@ -2,7 +2,7 @@
 /**
  * Class Blacklist checks if the user is allowed to be in the chat and inserts the user to the blacklist
  *
- * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung — Nicht-kommerziell 2.0"
+ * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung â€” Nicht-kommerziell 2.0"
  *
  * @copyright  2009 <SEDesign />
  * @license    http://creativecommons.org/licenses/by-nc/2.0/de/

@@ -2,7 +2,7 @@
 /**
  * UnregisterPw, remove password-protection
  *
- * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung — Nicht-kommerziell 2.0"
+ * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung â€” Nicht-kommerziell 2.0"
  *
  * @copyright  2013 <SEDesign />
  * @license    http://creativecommons.org/licenses/by-nc/2.0/de/

@@ -2,7 +2,7 @@
 /**
  * Class ReloaderMessages, the AJAX Request for getting and setting new messges,  pull session and more,
  *
- * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung — Nicht-kommerziell 2.0"
+ * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung â€” Nicht-kommerziell 2.0"
  *
  * @copyright  2010 <SEDesign />
  * @license    http://creativecommons.org/licenses/by-nc/2.0/de/
@@ -297,9 +297,9 @@ class ReloaderMessages extends DbConectionMaker
 			if (is_array($feld)) $_SESSION['etchat_'.$this->_prefix.'last_id']= $feld[(count($feld)-1)][0];
 			else
 			// DE
-			// Das ist wichtig hier die last_id aus der DB auszulesen sogar wenn für das Raum in bem sich der User befindet keine
+			// Das ist wichtig hier die last_id aus der DB auszulesen sogar wenn fÃ¼r das Raum in bem sich der User befindet keine
 			// neuen Messages gab. Sonst bleibt das last_id das alte und beim Raumwechsel kanns passieren, dass alle sonstigen Messages
-			// aus dem Raum in den gewächselt wurde, ausgegeben werden.
+			// aus dem Raum in den gewÃ¤chselt wurde, ausgegeben werden.
 			
 			// EN
 			// It is importent to get the last_id from the DB, even there is no messges for the user. Othewise it kan happen that

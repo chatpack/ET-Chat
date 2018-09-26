@@ -2,7 +2,7 @@
 /**
  * Class RoomAllowed, check permissions for any user in any room
  *
- * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung — Nicht-kommerziell 2.0"
+ * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung â€” Nicht-kommerziell 2.0"
  *
  * @copyright  2009 <SEDesign />
  * @license    http://creativecommons.org/licenses/by-nc/2.0/de/
@@ -22,7 +22,7 @@ class RoomAllowed extends EtChatConfig
 	
 	/**
 	* Constructor
-	* Function zur Prüfung der Rechte der User im Raum
+	* Function zur PrÃ¼fung der Rechte der User im Raum
 	* Return as $room_status: 1=allowed; 0=not_allowed; 2=password required
 	*
 	* @param int $room_id  from etchat_rooms.etchat_id_room

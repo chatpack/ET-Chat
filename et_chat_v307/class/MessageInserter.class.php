@@ -2,7 +2,7 @@
 /**
  * Class MessageInserter, insert system and user messages into DB and transform it if needed
  *
- * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung — Nicht-kommerziell 2.0"
+ * LICENSE: CREATIVE COMMONS PUBLIC LICENSE  "Namensnennung â€” Nicht-kommerziell 2.0"
  *
  * @copyright  2009 <SEDesign />
  * @license    http://creativecommons.org/licenses/by-nc/2.0/de/
@@ -118,7 +118,7 @@ class MessageInserter extends EtChatConfig
 			}
 			if (substr($_POST['message'], 0, 1)=="/"){
 				$db->sql("INSERT INTO {$this->_prefix}etchat_messages ( etchat_user_fid , etchat_text, etchat_text_css, etchat_timestamp, etchat_fid_room, etchat_privat)
-					VALUES ( 1, 'IRC Befehle werden hier nicht unterstützt. Alle Einstellungen können stattdessen in Menues bequemm eingestellt werden.', 'color:#".$_SESSION['etchat_'.$this->_prefix.'syscolor'].";font-weight:normal;font-style:normal;', ".date('U').", ".(int)$_POST['room'].", 0)", false);
+					VALUES ( 1, 'IRC Befehle werden hier nicht unterstÃ¼tzt. Alle Einstellungen kÃ¶nnen stattdessen in Menues bequemm eingestellt werden.', 'color:#".$_SESSION['etchat_'.$this->_prefix.'syscolor'].";font-weight:normal;font-style:normal;', ".date('U').", ".(int)$_POST['room'].", 0)", false);
 			}
 			*/
 			//--------------------------------

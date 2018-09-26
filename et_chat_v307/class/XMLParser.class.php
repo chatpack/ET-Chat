@@ -198,7 +198,7 @@ class XMLParser
 
         //Assign data to it
 		// ET -----------------------------------------------------
-        // Trim muß weg, da sonst die Leerzeichen vor Umlauten fehlen
+        // Trim muÃŸ weg, da sonst die Leerzeichen vor Umlauten fehlen
         //$tag->tagData .= trim($data);
 		$tag->tagData .= $data;
     }

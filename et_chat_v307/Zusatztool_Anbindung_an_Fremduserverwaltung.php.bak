@@ -39,7 +39,7 @@ $_SESSION['etchat_db1_logout_url']="http://www.Ihre_Webseite.de/aus_dem_chat_aus
 ##############################################################
 
 function __autoload($class_name) {
-    require_once ('class/'.$class_name.'.class.php');		
+		require_once ('class/'.$class_name.'.class.php');		
 }
 
 // initialise
