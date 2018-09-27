@@ -21,20 +21,21 @@ module.exports = {
   //   a: "./app/entry-a",
   //   b: ["./app/entry-b1", "./app/entry-b2"]
   // },
-  entry: [ "./src/builder", 
-           "./src/chat", 
-           "./src/controls", 
-           "./src/dragdrop", 
-           "./src/effects", 
-           "./src/login", 
-           "./src/prototype", 
-           "./src/scriptaculous", 
-           "./src/slider", 
-           "./src/sound", 
-           "./src/unittest", 
-           "./src/window"
-  ],
-
+  entry: { 
+    index:  "./src/login",
+    chat:   [ "./src/chat",
+              "./src/window"         // chatwindows
+            ],
+    vendor: [ "./src/prototype",     // required by scriptaculous
+              "./src/scriptaculous", // the highness itself
+              "./src/builder",       // required by scriptaculous
+              "./src/effects",       // required by scriptaculous
+              "./src/dragdrop",      // required by scriptaculous
+              "./src/controls",      // required by scriptaculous
+              "./src/slider",        // required by scriptaculous
+              "./src/sound"          // required by scriptaculous
+           ]
+  },
   // options related to how webpack emits results
   output: {
     // the target directory for all output files
@@ -55,7 +56,7 @@ module.exports = {
     publicPath: "/js/", // string
 
     // the name of the exported library
-    library: "et_chat", // string,
+    // library: "packed", // string,
 
     // the type of the exported library
     // libraryTarget: "umd", // universal module definition
@@ -66,9 +67,9 @@ module.exports = {
     // libraryTarget: "this", // property set on this
     // libraryTarget: "var", // variable defined in root scope
     // libraryTarget: "assign", // blind assignment
-    libraryTarget: "window", // property set to window object
+    // libraryTarget: "window", // property set to window object
     // libraryTarget: "global", // property set to global object
-    // libraryTarget: "jsonp", // jsonp wrapper
+    libraryTarget: "jsonp", // jsonp wrapper
 
     // include useful path info about modules, exports, requests, etc. into the generated cod
     pathinfo: true, // boolean

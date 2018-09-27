@@ -1846,8 +1846,11 @@ function $(element) {
       elements.push($(arguments[i]));
     return elements;
   }
-  if (Object.isString(element))
-    element = document.getElementById(element);
+  if (( Object.isString( element )) && ( element !== "" )) {
+        element = document.getElementById(element);
+  }
+  // if ( element === "" ) { console.log( "prototype.js::$ Leerer String übergeben." ); }
+
   return Element.extend(element);
 }
 
@@ -1925,7 +1928,7 @@ if (!Node.ELEMENT_NODE) {
   Object.extend(global.Element, element || { });
   if (element) global.Element.prototype = element.prototype;
 
-})(this);
+})( window ? window : this );
 
 Element.idCounter = 1;
 Element.cache = { };

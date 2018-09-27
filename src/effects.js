@@ -62,8 +62,6 @@ Element.forceRerendering = function(element) {
   } catch(e) { }
 };
 
-/*--------------------------------------------------------------------------*/
-
 var Effect = {
   _elementDoesNotExistError: {
     name: 'ElementDoesNotExistError',
@@ -156,6 +154,9 @@ var Effect = {
     }, options || {}));
   }
 };
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Effect )) { window.Effect = Effect; }
 
 Effect.DefaultOptions.transition = Effect.Transitions.sinoidal;
 

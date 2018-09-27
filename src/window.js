@@ -1220,6 +1220,8 @@ Window.prototype = {
       Windows.notify(eventName, this);
   }
 };
+// Bundled usage (browser + webpack)
+if ( window ) { window.Window = Window; }
 
 // Windows containers, register all page windows
 var Windows = {
@@ -1392,6 +1394,8 @@ var Windows = {
       this.focus(this.focusedWindow.getId())
   }
 };
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Windows )) { window.Windows = Windows; }
 
 var Dialog = {
   dialogId: null,
@@ -1562,6 +1566,9 @@ var Dialog = {
       win.cancelCallback(win);
   }
 }
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Dialog )) { window.Dialog = Dialog; }
+ 
 /*
   Based on Lightbox JS: Fullsize Image Overlays 
   by Lokesh Dhakar - http://www.huddletogether.com

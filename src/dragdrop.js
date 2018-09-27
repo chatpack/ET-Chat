@@ -124,6 +124,9 @@ var Droppables = {
   }
 };
 
+// Bundled usage (browser + webpack)
+// if (( window ) && ( ! window.Droppables )) { window.Droppables = Droppables; }
+
 var Draggables = {
   drags: [],
   observers: [],
@@ -221,7 +224,8 @@ var Draggables = {
   }
 };
 
-/*--------------------------------------------------------------------------*/
+// Bundled usage (browser + webpack)
+// if (( window ) && ( ! window.Draggables )) { window.Draggables = Draggables; }
 
 var Draggable = Class.create({
   initialize: function(element) {
@@ -570,7 +574,8 @@ var Draggable = Class.create({
 
 Draggable._dragging = { };
 
-/*--------------------------------------------------------------------------*/
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Draggable )) { window.Draggable = Draggable; }
 
 var SortableObserver = Class.create({
   initialize: function(element, observer) {
@@ -589,6 +594,9 @@ var SortableObserver = Class.create({
       this.observer(this.element)
   }
 });
+
+// Bundled usage (browser + webpack)
+// if (( window ) && ( ! window.SortableObserver )) { window.SortableObserver = SortableObserver; }
 
 var Sortable = {
   SERIALIZE_RULE: /^[^_\-](?:[A-Za-z0-9\-\_]*)[_](.*)$/,
@@ -943,6 +951,9 @@ var Sortable = {
     }
   }
 };
+
+// Bundled usage (browser + webpack)
+// if (( window ) && ( ! window.Sortable )) { window.Sortable = Sortable; }
 
 // Returns true if child is contained within element
 Element.isParent = function(child, element) {
