@@ -1,0 +1,9 @@
+{
+  "prepare": {
+      "type":   "prepare"
+  },
+  "test": {
+      "htdocs": "C:/Program Files/Apache/2.4.35/htdocs",
+      "app":    "et_chat"
+  }
+}
