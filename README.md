@@ -1,12 +1,10 @@
 # ET-Chat
-Entstanden aus dem Chatsystem ["ET – Chat v3.x"](http://www.sedesign.de/de_produkte_chat-v3.html) programmiert in PHP und JavaScript.
-
+Entstanden aus dem Chatsystem ["ET – Chat v3.x"](http://www.sedesign.de/de_produkte_chat-v3.html) programmiert in PHP und JavaScript.<br />
 Die Copyrights für ["ET – Chat v3.x"](http://www.sedesign.de/de_produkte_chat-v3.html) liegen bei http://www.sedesign.de
 
 ## Im Entstehungsprozess.
 
-<center><b>Noch gibt's hier kein Ergebnis, das fehlerfrei funktionieren würde.</b></center>
-<br />
+<center><b>Noch gibt's hier kein Ergebnis, das fehlerfrei funktionieren würde.</b></center><br />
 <center><b>Still under construction.</b></center>
 
 ## Dokumentation
