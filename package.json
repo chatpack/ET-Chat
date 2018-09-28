@@ -1,11 +1,11 @@
 {
   "name": "et_chat",
   "description": "et_chat clientside javascript",
-  "version": "0.0.1",
+  "version": "3.0.7",
   "license": "CC-BY-NC-2.0",
   "private": true,
   "author": {
-    "name": "SEDesign - Barney Rubble",
+    "name": "<SEDesign /> - Evgeni Tcherkasski",
     "email": "info<at>sedesign<dot>de",
     "url": "http://barnyrubble.tumblr.com/"
   },
@@ -19,9 +19,13 @@
     "chatpack (chatpack@outlook.de)"
   ],
   "scripts": {
-    "pack": "webpack  --config config.webpack/webpack.config.js"
+    "pack":        "webpack  --config config/webpack/webpack.config.js",
+    "deploy-test": "node config/deploy/deploy --test",
+    "test":        "npm run pack && node config/deploy/deploy --test"
   },
   "devDependencies": {
+    "fs-extra": "^7.0.0",
+    "rimraf": "^2.6.2",
     "webpack": "4.20.1",
     "webpack-cli": "3.1.1"
   },

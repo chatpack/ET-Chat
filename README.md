@@ -6,7 +6,13 @@ Die "Originalquellen finden sich im Ordner et_chat_v307
 Die neue Version entstehen im Ordner et_chat, src und templates (kommt noch).
 
 <center><b>Noch gibt's hier kein Ergebnis, das fehlerfrei funktionieren würde.</b></center>
+<br />
 <center><b>Still under construction.</b></center>
+
+## Dokumentation
+* [Voraussetzungen](doc/requirements.de.md)
+* [Webpack](doc/webpack.de.md)
+* [Deployment](doc/deploy.de.md)
 
 ## change-log (Änderungen)
 * summary: login works, chat works, chatlist works, windows open up but not fully functional yet.
@@ -15,5 +21,5 @@ Die neue Version entstehen im Ordner et_chat, src und templates (kommt noch).
 * copied PROJ_ROOT/et_chat_v307/styles/etchat_white to PROJ_ROOT/et_chat/styles/etchat_default
 * removed templates from PROJ_ROOT/et_chat/styles
 * modified PROJ_ROOT/src/*.js to get things back online
-* introduced webpack for bundeleing javascript files in PROJ_ROOT/src and deploying results in PROJ_ROOT/et_chat/js
+* introduced webpack for bundling javascript files in PROJ_ROOT/src and deploying results in PROJ_ROOT/et_chat/js
 * moved javascript from folder PROJ_ROOT/et_chat/js to PROJ_ROOT/src

@@ -1,23 +1,11 @@
 # Webpack
 
 ## Links
-https://webpack.js.org/
+* [Webpack Homepage](https://webpack.js.org/)
+* [Voraussetzungen](requirements.de.md)
 
-https://nodejs.org/dist/v8.12.0/node-v8.12.0-win-x64.zip
-
-https://nodejs.org/dist/v8.12.0/node-v8.12.0-win-x86.zip
-
-## Voraussetzungen
-Anm.: Die Entwicklung erfolgt z.Zt. auf einem 64Bit Windows System.
-
-PROJ_ROOT bezeichnet systemübergreifend den Basisordner des Projektes.
-Hier finden sich die Dateien license.txt, readme.md und package.json.
-
-### Windows
-Es muss ein nodejs vorhanden und die "path"-Variable zum nodejs-Verzeichnis gesetzt sein.
-Zur Zeit wird von einem nodejs LTS 8.12.0 ausgegangen, das im PROJ_ROOT entpackt (nicht
-installiert) wurde. Nach dem Entpacken ist die Datei env.bat anzupassen.
-Im Speziellen der Name des nodejs-Verzeichnisses.
+## Vorbereitungen
+Siehe: [Voraussetzungen](requirements.de.md)
 
 ## Installation
 Grundsätzlich wird während des Prozesses nichts installiert sondern nur kopiert. 
@@ -37,7 +25,7 @@ Alternativ kann die Datei package.json gelöscht und package.dev in package.json
 Nach einem Klick auf den cmd-Link wird aufgerufen:
 ```cmd
 npm install --save-dev webpack
-npm install --save-dev webpack-cli</code>
+npm install --save-dev webpack-cli
 ```
 
 ## Ausführen

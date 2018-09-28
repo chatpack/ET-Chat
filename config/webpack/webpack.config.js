@@ -41,7 +41,7 @@ module.exports = {
     // the target directory for all output files
     // must be an absolute path (use the Node.js path module)
     // ... relative to directory of current config file.
-    path: path.resolve( __dirname, "..", "et_chat", "js" ),
+    path: path.resolve( __dirname, "..", "..", "deploy", "js" ),
 
     // the filename template for entry chunks
     // defaults to main.js
