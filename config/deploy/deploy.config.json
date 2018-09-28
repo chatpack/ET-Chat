@@ -1,8 +1,24 @@
 {
   "prepare": {
-      "type":   "prepare"
+      "type":   "prepare",
+      "style":  {
+		  "deploy":  [ ],
+		  "dflt":    "white"
+		}
   },
   "test": {
+      "style":  {
+		  "deploy": [ ],
+		  "dflt":   "white"
+		},
+      "htdocs": "C:/Program Files/Apache/2.4.35/htdocs",
+      "app":    "et_chat"
+  },
+  "example": {
+      "style":  {
+		  "deploy": [ "black", "blue", "green", "white" ],
+		  "dflt":   "white"
+		},
       "htdocs": "C:/Program Files/Apache/2.4.35/htdocs",
       "app":    "et_chat"
   }

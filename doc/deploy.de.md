@@ -50,6 +50,10 @@ enthalten. Die Deployment-Szenarien im folgenden Beislpiel heißen <code>"prepar
       "app":       "et_chat"
   },
   "test": {
+      "style":     {
+		     "deploy": [ "black", "blue", "green", "white" ],
+		     "dflt":   "white"
+		   },
       "htdocs":    "C:/Program Files/Apache/2.4.35/htdocs",
       "app":       "et_chat"
   },
@@ -80,6 +84,17 @@ und dem Namensmuster des Deployments entspricht.
 D.h.: Die Datei heisst <code>test.config.php</code> im Falle eines "test" Deployments oder <code>prod.config.php</code> im Falle eines "prod" Deployments.
 
 In Fällen, in denen "phpconfig" einen Wert zugewiesen bekommt, sind die Dateinamen oder Pfadangaben relativ zum Ordner PROJ_ROOT/config/php zu machen.
+
+### style (optional)
+#### style.deploy (optional)
+Ein Array, das alle Styles enthält, die auf den Server deployed werden sollen.
+
+Falls das Element nicht vorhanden oder das zugewiesene Array leer ist, werden keine Styles deployed.
+
+#### style.dflt (optional)
+Der Style, der als Standard zur Verfügung gestellt werden soll.
+
+Falls das Element nicht vorhanden ist, wird "white" als Standardwert verwendet.
 
 #### type (optional)
 Wenn der Eintrag "type" auf "prepare" gesetzt wird, wird das Deployment nach der Vorbereitung aller Dateien beendet.

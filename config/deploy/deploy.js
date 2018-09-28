@@ -26,8 +26,9 @@ const fs      = require( "fs" );
 const fse     = require( "fs-extra" );
 const path    = require( "path" );
 
-const CHTPATH = "./et_chat";
-const DPLPATH = "./deploy";
+const CHTPATH      = "./et_chat";
+const CHTSTYLEPATH = "./et_chat_styles";
+const DPLPATH      = "./deploy";
 
 const ERRMSG  = "Deployment destination not modified. Deployment failed.";
 const DONE    = "... done\n";
@@ -46,10 +47,11 @@ if ( ! deploycfg ) {
      process.exit(1);
 }
 
-const DST    = path.resolve( DPLPATH, deploytype );
-const JSDST  = path.resolve( DST, JS );
-const JSSRC  = path.resolve( DPLPATH, JS );
-const CHTSRC = path.resolve( CHTPATH );
+const DST         = path.resolve( DPLPATH, deploytype );
+const JSDST       = path.resolve( DST, JS );
+const JSSRC       = path.resolve( DPLPATH, JS );
+const CHTSRC      = path.resolve( CHTPATH );
+const CHTSTYLESRC = path.resolve( CHTSTYLEPATH );
 
 /* ############################################################### **
  *
@@ -96,6 +98,49 @@ catch( err ) {
        console.error( ERRMSG );
        process.exit(1);
 }
+
+/* ############################################################### **
+ *
+ *  Copy styles to deployment directory.
+ *
+ * ############################################################### */
+log( "Preparing deployment - copying styles." );
+try {
+    let styles = []
+    if (( deploycfg.style ) && ( deploycfg.style.deploy )) {
+          if ( Array.isArray( deploycfg.style.deploy )) {
+               styles = deploycfg.style.deploy;
+          }
+    }
+    
+    let stylesrc = null;
+    let styledst = null;
+    styles.forEach( function( style ) {
+      stylesrc = path.resolve( CHTSTYLESRC, style );
+      styledst = path.resolve( DST, "styles", style );
+      if ( fs.existsSync( stylesrc )) {
+           fse.copySync( stylesrc, styledst );
+      }
+    });
+
+    let dfltstyle = "white";
+    if (( deploycfg.style ) && ( deploycfg.style.dflt )) {
+          dfltstyle = deploycfg.style.dflt;
+    }
+    stylesrc = path.resolve( CHTSTYLESRC, dfltstyle );
+    styledst = path.resolve( DST, "styles", "default" );
+    if ( fs.existsSync( stylesrc )) {
+         fse.copySync( stylesrc, styledst );
+    }
+
+    log( DONE );
+}
+catch( err ) {
+       console.error( err ); 
+       console.error( ERRMSG );
+       process.exit(1);
+}
+
 
 /* ############################################################### **
  *

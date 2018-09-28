@@ -90,7 +90,7 @@ CREATE TABLE ###prefix###etchat_config (
 )
 WITHOUT OIDS;
 -- limit --
-INSERT INTO ###prefix###etchat_config (etchat_config_reloadsequenz, etchat_config_messages_im_chat, etchat_config_style, etchat_config_loeschen_nach, etchat_config_lang) VALUES (4000, 22, 'etchat_white', 1, 'lang_de.xml');
+INSERT INTO ###prefix###etchat_config (etchat_config_reloadsequenz, etchat_config_messages_im_chat, etchat_config_style, etchat_config_loeschen_nach, etchat_config_lang) VALUES (4000, 22, 'default', 1, 'lang_de.xml');
 -- limit --
 
 
