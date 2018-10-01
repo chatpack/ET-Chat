@@ -13,38 +13,45 @@ window.onload = function() {
   //-------------------------------------------
 
   $("login").onsubmit = function() {
-    if (!Element.visible("lay_pw")) $("pw").value = "";
+    if (!Element.visible("lay_pw")) {
+      $("pw").value = "";
+    }
     $("submit_button").disabled = true;
 
-    var myAjaxObj = new Ajax.Request("./?CheckUserName", {
-      onSuccess: function(ajaxResult) {
-        if (ajaxResult.responseText == 1) location.href = "./?Chat";
-        else {
-          $("submit_button").disabled = false;
-          if (
-            ajaxResult.responseText == "pw" ||
-            ajaxResult.responseText == "pw+invisible"
-          ) {
-            Element.show("lay_pw");
-            if (ajaxResult.responseText == "pw+invisible")
-              Element.show("lay_invisible");
-            Element.hide("lay_gender");
-            $("pw").focus();
-          } else {
-            if (ajaxResult.responseText == "blacklist")
-              location.href = "./?AfterBlacklistInsertion";
-            else if (!ajaxResult.responseText.empty())
-              alert(ajaxResult.responseText);
-            else {
-              $("username").value = "";
-              $("username").focus();
+    try {
+      // console.log("------------->");
+      // console.dir(Ajax.Request);
+      new Ajax.Request("./?CheckUserName", {
+        onSuccess: function(ajaxResult) {
+          if (ajaxResult.responseText == 1) location.href = "./?Chat";
+          else {
+            $("submit_button").disabled = false;
+            if (
+              ajaxResult.responseText == "pw" ||
+              ajaxResult.responseText == "pw+invisible"
+            ) {
+              Element.show("lay_pw");
+              if (ajaxResult.responseText == "pw+invisible")
+                Element.show("lay_invisible");
+              Element.hide("lay_gender");
+              $("pw").focus();
+            } else {
+              if (ajaxResult.responseText == "blacklist")
+                location.href = "./?AfterBlacklistInsertion";
+              else if (!ajaxResult.responseText.empty())
+                alert(ajaxResult.responseText);
+              else {
+                $("username").value = "";
+                $("username").focus();
+              }
             }
           }
-        }
-      },
-      postBody: $("login").serialize()
-    });
-
+        },
+        postBody: $("login").serialize()
+      });
+    } catch (err) {
+      console.error(err + (err.stack ? "\n" + err.stack : ""));
+    }
     return false;
   };
 };

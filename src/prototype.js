@@ -77,11 +77,16 @@ var Class = (function() {
 
   function subclass() {}
   function create() {
-    var parent = null,
-      properties = $A(arguments);
-    if (Object.isFunction(properties[0])) parent = properties.shift();
+    var parent = null;
+    var properties = $A(arguments);
+    if (Object.isFunction(properties[0])) {
+      parent = properties.shift();
+    }
 
     function klass() {
+      // console.log("==================>");
+      // console.dir(this);
+      // console.dir(arguments);
       this.initialize.apply(this, arguments);
     }
 
@@ -95,11 +100,13 @@ var Class = (function() {
       parent.subclasses.push(klass);
     }
 
-    for (var i = 0, length = properties.length; i < length; i++)
+    for (var i = 0, length = properties.length; i < length; i++) {
       klass.addMethods(properties[i]);
+    }
 
-    if (!klass.prototype.initialize)
+    if (!klass.prototype.initialize) {
       klass.prototype.initialize = Prototype.emptyFunction;
+    }
 
     klass.prototype.constructor = klass;
     return klass;
@@ -392,9 +399,13 @@ Object.extend(
     }
 
     function argumentNames() {
+      var regexp = new RegExp(
+        "\\/\\/.*?[\r\n]|\\/\\*(?:.|[\r\n])*?\\*\\/",
+        "g"
+      );
       var names = this.toString()
         .match(/^[\s\(]*function[^(]*\(([^)]*)\)/)[1]
-        .replace(/\/\/.*?[\r\n]|\/\*(?:.|[\r\n])*?\*\//g, "")
+        .replace(regexp, "")
         .replace(/\s+/g, "")
         .split(",");
       return names.length == 1 && !names[0] ? [] : names;
@@ -634,7 +645,10 @@ Object.extend(
     }
 
     function stripTags() {
-      return this.replace(/<\w+(\s+("[^"]*"|'[^']*'|[^>])+)?>|<\/\w+>/gi, "");
+      return this.replace(
+        /<\w+(\s+(\u0022[^\u0022]*\u0022|\u0027[^\u0027]*\u0027|[^>])+)?>|<\/\w+>/gi,
+        ""
+      );
     }
 
     function stripScripts() {
@@ -733,8 +747,8 @@ Object.extend(
         return "\\u00" + character.charCodeAt().toPaddedString(2, 16);
       });
       if (useDoubleQuotes)
-        return '"' + escapedString.replace(/"/g, '\\"') + '"';
-      return "'" + escapedString.replace(/'/g, "\\'") + "'";
+        return '"' + escapedString.replace(/\u0022/g, '\\"') + '"';
+      return "'" + escapedString.replace(/\u0027/g, "\\'") + "'";
     }
 
     function unfilterJSON(filter) {
@@ -744,9 +758,9 @@ Object.extend(
     function isJSON() {
       var str = this;
       if (str.blank()) return false;
-      str = str.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@");
+      str = str.replace(/\\(?:[\u0022\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@");
       str = str.replace(
-        /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+        /\u0022[^\u0022\\\n\r]*\u0022|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
         "]"
       );
       str = str.replace(/(?:^|:|,)(?:\s*\[)+/g, "");
@@ -1428,12 +1442,12 @@ var Hash = Class.create(
   })()
 );
 
-Hash.from = $H;
-
 // Bundled usage (browser + webpack)
 if (window && !window.Hash) {
   window.Hash = Hash;
 }
+
+Hash.from = $H;
 
 // modification of Number.prototype
 Object.extend(
@@ -1572,6 +1586,11 @@ var Ajax = {
   activeRequestCount: 0
 };
 
+// Bundled usage (browser + webpack)
+if (window && !window.Ajax) {
+  window.Ajax = Ajax;
+}
+
 Ajax.Responders = {
   responders: [],
 
@@ -1632,6 +1651,8 @@ Ajax.Request = Class.create(Ajax.Base, {
   _complete: false,
 
   initialize: function($super, url, options) {
+    // console.log("xxxxxxxxxxxxxxxxxxxxxxx");
+    // console.dir($super);
     $super(options);
     this.transport = Ajax.getTransport();
     this.request(url);
@@ -1996,11 +2017,6 @@ Ajax.PeriodicalUpdater = Class.create(Ajax.Base, {
     this.updater = new Ajax.Updater(this.container, this.url, this.options);
   }
 });
-
-// Bundled usage (browser + webpack)
-if (window && !window.Ajax) {
-  window.Ajax = Ajax;
-}
 
 function $(element) {
   if (arguments.length > 1) {
