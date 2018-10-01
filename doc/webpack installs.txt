@@ -1,0 +1,8 @@
+npm install @angular/cli --save-dev
+npm install zone.js --save-dev
+npm install @angular/core --save-dev
+npm install @angular/common --save-dev
+npm install @angular/cdk --save-dev
+npm install @angular/material --save-dev
+
+npm install html-webpack-plugin --save-dev

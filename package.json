@@ -14,12 +14,20 @@
   ],
   "scripts": {
     "pack": "webpack  --config config/webpack/webpack.config.js",
-    "test": "npm run pack"
+    "test": "npm run pack -- --mode=development"
   },
   "devDependencies": {
-    "@angular/cli": "^6.2.4",
+    "@angular/cdk": "^6.4.7",
+    "@angular/cli": "6.2.4",
+    "@angular/common": "^6.1.9",
+    "@angular/core": "^6.1.9",
+    "@angular/material": "^6.4.7",
+    "file-loader": "^2.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "webpack": "4.20.1",
-    "webpack-cli": "3.1.1"
+    "webpack-cli": "3.1.1",
+    "zone.js": "^0.8.26"
   },
   "engines": {
     "node": "8.12.0"
