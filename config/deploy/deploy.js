@@ -133,6 +133,15 @@ try {
          fse.copySync( stylesrc, styledst );
     }
 
+    // replace stylenames in default/style.css
+    let dfltcssfile = path.resolve( styledst, "style.css" );
+
+    let flecontent  = fs.readFileSync( dfltcssfile ).toString();
+        flecontent  = flecontent.replace( new RegExp( dfltstyle + "_", "g" ), "default_" );
+        flecontent  = flecontent.replace( new RegExp( "_" + dfltstyle, "g" ), "_default" );
+
+    fs.writeFileSync( dfltcssfile, flecontent, 'utf8' );
+
     log( DONE );
 }
 catch( err ) {
