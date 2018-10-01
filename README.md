@@ -2,10 +2,10 @@
 Entstanden aus dem Chatsystem ["ET – Chat v3.x"](http://www.sedesign.de/de_produkte_chat-v3.html) programmiert in PHP und JavaScript.<br />
 Die Copyrights für ["ET – Chat v3.x"](http://www.sedesign.de/de_produkte_chat-v3.html) liegen bei http://www.sedesign.de
 
-## Im Entstehungsprozess.
-
-<center><b>Noch gibt's hier kein Ergebnis, das fehlerfrei funktionieren würde.</b></center><br />
-<center><b>Still under construction.</b></center>
+## Unterschiede zu ["ET – Chat v3.x"](http://www.sedesign.de/de_produkte_chat-v3.html)
+* Beim Deployment werden nur noch die verwendeten Styles auf dem Server hinterlegt.
+* Es gibt einen offensichtlichen "Default" Style.
+* Alle Javascript-Framworks wurden in vendor.js zusammengeführt.
 
 ## Dokumentation
 * [Voraussetzungen](doc/requirements.de.md)
@@ -13,7 +13,8 @@ Die Copyrights für ["ET – Chat v3.x"](http://www.sedesign.de/de_produkte_chat
 * [Deployment](doc/deploy.de.md)
 
 ## change-log (Änderungen)
-* summary: login works, chat works, chatlist works, windows open up but not fully functional yet.
+* summary: fully back online
+* fixed the style.css scripts
 * removed old source folder
 * released deploymentscript
 * moved install to PROJ_ROOT/et_chat_install
