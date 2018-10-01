@@ -114,6 +114,27 @@ module.exports = {
     // prefix module sources in bundle for better readablitity
     // sourcePrefix: "\t", // string
   },
+  module: {
+    rules: [
+      {
+        test: /\.js?$/,
+        enforce: 'pre',
+        exclude: [ /node_modules/, /deploy/ ],
+        use: [
+          {
+            loader:  'prettier-loader',
+            options: {
+              parser: "babylon" , // The default prettier parser (we might want 'flow' in future)
+              printWidth: 80,     // Specify the length of line that the printer will wrap on.
+              tabWidth: 2,        // Specify the number of spaces per indentation-level.
+              useTabs: false,     // Indent lines with tabs instead of spaces.
+              semi: true          // Print semicolons at the ends of statements.
+            }
+          }
+        ]
+      }
+    ]
+  },
   optimization: {
     minimize: false
   }

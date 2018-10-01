@@ -25,3 +25,5 @@ Die Copyrights für ["ET – Chat v3.x"](http://www.sedesign.de/de_produkte_chat
 * modified PROJ_ROOT/src/*.js to get things back online
 * introduced webpack for bundling javascript files in PROJ_ROOT/src and deploying results in PROJ_ROOT/et_chat/js
 * moved javascript from folder PROJ_ROOT/et_chat/js to PROJ_ROOT/src
+
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
