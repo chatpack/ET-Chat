@@ -1,7 +1,7 @@
 {
   "name": "et_chat",
   "description": "et_chat clientside javascript",
-  "version": "3.0.7",
+  "version": "4.0.0",
   "license": "CC-BY-NC-2.0",
   "private": true,
   "author": {
@@ -10,24 +10,14 @@
     "url": "http://barnyrubble.tumblr.com/"
   },
   "contributors": [
-    "Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)",
-    "Sam Stephenson (http://www.prototypejs.org/)",
-    "Sebastien Gruhier (http://xilinus.com, http://itseb.com)",
-    "Adam A. Flynn (http://www.criticaldevelopment.net/xml/)",
-    "Gerald Saiger (http://www.flutsch-media.com)",
-    "Scott Schiller (schillmania.com) (http://www.schillmania.com/projects/soundmanager2/)",
     "chatpack (chatpack@outlook.de)"
   ],
   "scripts": {
     "pack": "webpack  --config config/webpack/webpack.config.js",
-    "deploy-test": "node config/deploy/deploy --test",
-    "test": "npm run pack && npm run deploy-test"
+    "test": "npm run pack"
   },
   "devDependencies": {
-    "fs-extra": "^7.0.0",
-    "prettier": "^1.14.3",
-    "prettier-loader": "^2.1.1",
-    "rimraf": "^2.6.2",
+    "@angular/cli": "^6.2.4",
     "webpack": "4.20.1",
     "webpack-cli": "3.1.1"
   },
