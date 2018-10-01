@@ -10,9 +10,6 @@
 // ... we do not expose the original ET_Chat type.
 if (( window ) && ( ! window.ET_Chat )) { window.ET_Chat = { }; }
 
-// moved to script scope
-var chatObj = null;
-
 /**
  *  Startup chat after successful login.
  *  Called via window.onload
@@ -22,8 +19,13 @@ window.ET_Chat.onload = function( config ) {
          throw new Error( "ET_Chat::onload: Missing configuration data." );
     }
 
-    chatObj = new ET_Chat( config );
-    chatObj.start();
+    let chatObj = new ET_Chat( config );
+        chatObj.start();
+
+    /**
+     *  Wrapper function for call to instance method.
+     */
+    function userOnlineWrapper() { chatObj.userOnline(); }
 
     setTimeout( userOnlineWrapper, 1000 );
     if ( Prototype.Browser.IE ) {
@@ -31,10 +33,6 @@ window.ET_Chat.onload = function( config ) {
     }
     else chatObj.dragSplitpane();
 }
-/**
- *  Wrapper function for call to instance method.
- */
-function userOnlineWrapper() { chatObj.userOnline(); }
 
 function ET_Chat( config ) {
 
@@ -60,7 +58,7 @@ function ET_Chat( config ) {
   this.textcolor;                               //(public)
   this.mouse_top=0;                             //(privat) Cursorkoordueberwachung
   this.mouse_left=0;                            //(privat) Cursorkoordueberwachung
-  this.win_block = Array();                     //(privat) Window-Object-Array zum Userblokieren
+  this.win_block = Array();                     //(privat) Window-Object-Array zum Userblockieren
   this.win_block_ids = Array();      
   this.win_private = Array();                   //(privat) Window-Object-Array private message window
   this.win_admin_user = Array();                //(privat) Window-Object-Array zum Useradministrrieren
@@ -364,10 +362,10 @@ this.start = function(){
   }
 
   // MausKoord fuer Fenster und Tooltips
-  Event.observe(document, 'mousemove', function(event){
+  Event.observe( document, 'mousemove', function(event){
      self.mouse_left = Event.pointerX(event);
      self.mouse_top = Event.pointerY(event);
-     });
+  });
 
   // ueberwachung aller Elemente der OnlineList, Chatinhalts,
   // also beim Private, Roomchange oder Usersperren wirds dadurch ausgeloest            
@@ -1082,15 +1080,11 @@ this.historyWindow = function(seite){
 //#####################################################################################
 // UserOnline Anzeige
 var updateUserOnlineAnzeige = function(ajaxResultJSON) {
+  let aktuelle_room_id;
 
-    var aktuelle_room_id;
-
-    // Hier wird der Array des Updaters ausgewertet
-  var jsonObj = self.jsonObjUserGlobal = ajaxResultJSON.responseText.evalJSON();
-  if(jsonObj==0){
-    //setTimeout( updateUserOnlineAnzeigeAfterRoomChange ,1000);
-  }
-  else{
+  // Hier wird der Array des Updaters ausgewertet
+  let jsonObj = self.jsonObjUserGlobal = ajaxResultJSON.responseText.evalJSON();
+  if ( jsonObj ) {
         var anzahl_der_user_im_chat=0;
         // aktuelle Rechte aus der DB Erhalten und als Globaler Wert festlegen
         for (var i=0; i<jsonObj.userOnline.length; i++){
@@ -1346,7 +1340,7 @@ var changeUserEvent = function(ereignis){
       
       var separate_win_privat_menue = (self.allowed_privates_in_separate_win) ? '<img src="img/privat_win.png" align="left" />&nbsp;&nbsp;<a href="#" id="info_privatf_'+id+'" >'+lang_changeUserEvent_infoblock_4+'</a><br />' : '';
       var chat_privat_menue = (self.allowed_privates_in_chat_win) ? '<img src="img/privat_chat.png" align="left" />&nbsp;&nbsp;<a href="#" id="info_privatm_'+id+'" >'+lang_changeUserEvent_infoblock_3+'</a><br />' : '';
-      var block_option4privat = (!self.allowed_privates_in_separate_win && !self.allowed_privates_in_chat_win) ? '' : '<input type="Checkbox" id="blokiere_user_priv_'+id+'" '+disabled_block+'> '+lang_changeUserEvent_infoblock_7;
+      var block_option4privat = (!self.allowed_privates_in_separate_win && !self.allowed_privates_in_chat_win) ? '' : '<input type="Checkbox" id="blockiere_user_priv_'+id+'" '+disabled_block+'> '+lang_changeUserEvent_infoblock_7;
       
       self.win_block[id].setHTMLContent('\
       <img src="img/set_name.png" align="left" />&nbsp;&nbsp;<a href="#" id="info_set_name_'+id+'" >'+lang_changeUserEvent_infoblock_2+'</a><br />\
@@ -1354,7 +1348,7 @@ var changeUserEvent = function(ereignis){
       '+separate_win_privat_menue+'\
       <img src="img/delete.png" align="left" />&nbsp;&nbsp;<a href="#" id="info_blockform_'+id+'" >'+lang_changeUserEvent_infoblock_5+'</a>\
       <div id=\"block_form_div_'+id+'\" style="display:none;margin-top:2px;"><form name="user_block_'+id+'" style="display:inline;" >\
-      <input type="Checkbox" id="blokiere_user_all_'+id+'" '+disabled_block+'> '+lang_changeUserEvent_infoblock_6+'&nbsp;&nbsp;&nbsp;\
+      <input type="Checkbox" id="blockiere_user_all_'+id+'" '+disabled_block+'> '+lang_changeUserEvent_infoblock_6+'&nbsp;&nbsp;&nbsp;\
       '+block_option4privat+'</form></div>');
       
       var make_ajax_request_of_blocking = true;
@@ -1399,10 +1393,10 @@ var changeUserEvent = function(ereignis){
                     "./?BlockUser",
             {
                      onSuccess: function(result) {
-                       if (result.responseText == "all") $("blokiere_user_all_"+ereignis.slice(10, ereignis.length)).checked=true;
-                       else $("blokiere_user_all_"+ereignis.slice(10, ereignis.length)).checked=false;
-                       if (result.responseText == "priv") $("blokiere_user_priv_"+ereignis.slice(10, ereignis.length)).checked=true;
-                       else $("blokiere_user_priv_"+ereignis.slice(10, ereignis.length)).checked=false;
+                       if (result.responseText == "all") $("blockiere_user_all_"+ereignis.slice(10, ereignis.length)).checked=true;
+                       else $("blockiere_user_all_"+ereignis.slice(10, ereignis.length)).checked=false;
+                       if (result.responseText == "priv") $("blockiere_user_priv_"+ereignis.slice(10, ereignis.length)).checked=true;
+                       else $("blockiere_user_priv_"+ereignis.slice(10, ereignis.length)).checked=false;
                      },
                      postBody: "show="+ereignis.slice(10, ereignis.length)
                     }
@@ -1410,8 +1404,8 @@ var changeUserEvent = function(ereignis){
           make_ajax_request_of_blocking = false;
       }
       
-            $("blokiere_user_all_"+id).onclick = function(){
-              try { $("blokiere_user_priv_"+id).checked=false; } catch(e){}
+            $("blockiere_user_all_"+id).onclick = function(){
+              try { $("blockiere_user_priv_"+id).checked=false; } catch(e){}
 
                  new Ajax.Request(
                      "./?BlockUser",
@@ -1423,8 +1417,8 @@ var changeUserEvent = function(ereignis){
       }
 
       if((self.allowed_privates_in_separate_win || self.allowed_privates_in_chat_win))
-        $("blokiere_user_priv_"+id).onclick = function(){
-          $("blokiere_user_all_"+id).checked=false;
+        $("blockiere_user_priv_"+id).onclick = function(){
+          $("blockiere_user_all_"+id).checked=false;
 
           new Ajax.Request(
                      "./?BlockUser",

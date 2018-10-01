@@ -19,12 +19,14 @@
     "chatpack (chatpack@outlook.de)"
   ],
   "scripts": {
-    "pack":        "webpack  --config config/webpack/webpack.config.js",
+    "pack": "webpack  --config config/webpack/webpack.config.js",
     "deploy-test": "node config/deploy/deploy --test",
-    "test":        "npm run pack && node config/deploy/deploy --test"
+    "test": "npm run pack && npm run deploy-test"
   },
   "devDependencies": {
     "fs-extra": "^7.0.0",
+    "prettier": "^1.14.3",
+    "prettier-loader": "^2.1.1",
     "rimraf": "^2.6.2",
     "webpack": "4.20.1",
     "webpack-cli": "3.1.1"

@@ -40,6 +40,10 @@ if(typeof Effect == 'undefined')
   throw("controls.js requires including script.aculo.us' effects.js library");
 
 var Autocompleter = { };
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Autocompleter )) { window.Autocompleter = Autocompleter; }
+
 Autocompleter.Base = Class.create({
   baseInitialize: function(element, update, options) {
     element          = $(element);

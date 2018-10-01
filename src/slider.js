@@ -7,6 +7,9 @@
 
 if (!Control) var Control = { };
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Control )) { window.Control = Control; }
+
 // options:
 //  axis: 'vertical', or 'horizontal' (default)
 //

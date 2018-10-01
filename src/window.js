@@ -1394,6 +1394,7 @@ var Windows = {
       this.focus(this.focusedWindow.getId())
   }
 };
+
 // Bundled usage (browser + webpack)
 if (( window ) && ( ! window.Windows )) { window.Windows = Windows; }
 
@@ -1566,6 +1567,7 @@ var Dialog = {
       win.cancelCallback(win);
   }
 }
+
 // Bundled usage (browser + webpack)
 if (( window ) && ( ! window.Dialog )) { window.Dialog = Dialog; }
  
@@ -1848,3 +1850,5 @@ var WindowUtilities = {
   }  
 }
 
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.WindowUtilities )) { window.WindowUtilities = WindowUtilities; }

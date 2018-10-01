@@ -134,3 +134,6 @@ var Builder = {
     });
   }
 };
+
+// Bundled usage (browser + webpack)
+if (( window ) && ( ! window.Builder )) { window.Builder = Builder; }
