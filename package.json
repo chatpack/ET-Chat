@@ -17,6 +17,7 @@
     "test": "npm run pack -- --mode=development"
   },
   "devDependencies": {
+    "@angular/animations": "^6.1.9",
     "@angular/cdk": "^6.4.7",
     "@angular/cli": "6.2.4",
     "@angular/common": "^6.1.9",
