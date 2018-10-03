@@ -1,6 +1,6 @@
 /** ******************************************************************************************************
  *
- *  app.component.ts
+ *  app-routing.component.ts
  *
  *  © 2018 ch4tp4ck
  *
@@ -12,19 +12,24 @@
  *
  ******************************************************************************************************* */
 
-import { Component }				        from "@angular/core"; 
+import { NgModule }               from '@angular/core';
+import { RouterModule }           from '@angular/router';
+import { Routes }                 from '@angular/router';
 
-import "../css/custom-theme.scss";
-import "./app.component.scss";
+const appRoutes: Routes = [
+  { path: "", redirectTo: '/destination', pathMatch: 'full' }
+];
 
-@Component({
-  selector:			"et-chat",                         // replace "my-app" by template content
-  template:     require( "./app.component.html" )  // require resolves relative to current directory/file
+
+@NgModule({
+  imports:  [
+	            RouterModule.forRoot(
+                appRoutes /*,
+                { enableTracing: true } // <-- debugging purposes only */
+              )
+            ],
+  exports:  [
+	            RouterModule
+            ]
 })
-export class AppComponent {
-  /**
-   *  Constructor
-   */
-  constructor() {
-  }
-}
+export class AppRoutingModule { }

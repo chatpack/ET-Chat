@@ -1,6 +1,6 @@
 /** ******************************************************************************************************
  *
- *  app.component.ts
+ *  app.sidebar.component.ts
  *
  *  © 2018 ch4tp4ck
  *
@@ -12,19 +12,24 @@
  *
  ******************************************************************************************************* */
 
-import { Component }				        from "@angular/core"; 
+import { Component }	from '@angular/core';
+import { Router }			from '@angular/router';
 
-import "../css/custom-theme.scss";
-import "./app.component.scss";
+import "./app.sidebar.component.scss";
 
 @Component({
-  selector:			"et-chat",                         // replace "my-app" by template content
-  template:     require( "./app.component.html" )  // require resolves relative to current directory/file
+  selector:			"app-sidebar",                            // replace "app-sidebar" by template content
+  template:     require( "./app.sidebar.component.html" ) // require resolves relative to current directory/file
 })
-export class AppComponent {
+export class AppSidebarComponent { 
+  
+  constructor( private router: Router ) { }
+
   /**
-   *  Constructor
+   *  Called by sidebar elements to get output displayed in content area
+   *  (right side)
    */
-  constructor() {
+  public routeTo( destination: Array<String>): void {
+    this.router.navigate( destination );
   }
 }

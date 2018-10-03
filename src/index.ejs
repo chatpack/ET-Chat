@@ -10,7 +10,7 @@
     <style> html, body { height: 100%; width: "100%"; margin: 0; padding: 0; }</style>
   </head>
   <body>
-    <my-app> Loading ET-Chat <%= htmlWebpackPlugin.options.app.version %> (Material Generation)
+    <et-chat> Loading ET-Chat <%= htmlWebpackPlugin.options.app.version %> (Material Generation)</et-chat>
     <!-- Scripts inserted by webpack --><% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
     <script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script><% } %>
   </body>

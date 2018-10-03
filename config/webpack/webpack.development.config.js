@@ -23,10 +23,6 @@ const HtmlWebpackPlugin = require( "html-webpack-plugin" );
  */
 const BundleAnalyzerPlugin = require( "webpack-bundle-analyzer" ).BundleAnalyzerPlugin;
 /**
- *  Since webpack 4 use mini-css-extract-plugin for css
- */
-const MiniCssExtractPlugin = require( "mini-css-extract-plugin" );
-/**
  *
  */
 const UglifyJsPlugin = require( "uglifyjs-webpack-plugin" );
@@ -162,32 +158,25 @@ module.exports = function( env, argv ) {
                                   }
                     }]
         },{
+          test:     /\.scss$/,
+          // include: any scss in projects source directory
+          include:  base.sourceDirectory(),
+          use:      [{
+                        loader:   "style-loader"
+                    },{
+                        loader:   "css-loader"
+                    },{
+                        loader:   "sass-loader"
+                    }]
+        },{
           test:     /\.css$/,
           // include: any css in project directory and subdirectories
           use:      [{ 
                         loader: "style-loader" 
                      },{
-                        loader: "css-loader",
-                        options:  {
-                                      sourceMap: true
-                                  }
-                    }]
-        },{
-          test:     /\.scss$/,
-          // include: any scss in project directory and subdirectories
-          use:      [{
-                        loader:   "css-loader",
-                        options:  {
-                                      sourceMap: true
-                                  }
-                    },{
-                        loader:   "sass-loader",
-                        options:  {
-                                      sourceMap: true
-                                  }
+                        loader: "css-loader"
                     }]
         }
-
       ]
     },
     optimization: {

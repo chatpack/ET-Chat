@@ -1,6 +1,6 @@
 /** ******************************************************************************************************
  *
- *  app.component.ts
+ *  app.toolbar.component.ts
  *
  *  © 2018 ch4tp4ck
  *
@@ -12,19 +12,10 @@
  *
  ******************************************************************************************************* */
 
-import { Component }				        from "@angular/core"; 
-
-import "../css/custom-theme.scss";
-import "./app.component.scss";
+import { Component }	from '@angular/core';
 
 @Component({
-  selector:			"et-chat",                         // replace "my-app" by template content
-  template:     require( "./app.component.html" )  // require resolves relative to current directory/file
+  selector:			"app-toolbar",                            // replace "app-toolbar" by template content
+  template:	    require( "./app.toolbar.component.html" ) // require resolves relative to current directory/file
 })
-export class AppComponent {
-  /**
-   *  Constructor
-   */
-  constructor() {
-  }
-}
+export class AppToolbarComponent { }
