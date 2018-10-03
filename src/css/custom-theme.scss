@@ -1,0 +1,39 @@
+/*! et-chat custom-theme.scss - © 2018 ch4tp4ck - license: CC-BY-NC-2.0 */
+/* ********************************************************************************************************
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ *  LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+ *  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ *  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+ *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ***************************************************************************************************** */
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+@import './et-chat-theme';
+
+// Include the common styles for Angular Material. We include this here so
+// you only have to load a single css file for Angular Material in your app.
+// Be sure about you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$et-chat-app-primary: mat-palette($et-chat-red);
+$et-chat-app-accent:  mat-palette($mat-grey, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$et-chat-app-warn:    mat-palette($mat-red);
+
+// The ok palette is a custom palette (by dbrenck).
+$et-chat-app-ok:      mat-palette($mat-green);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$et-chat-app-theme:   mat-light-theme($et-chat-app-primary, $et-chat-app-accent, $et-chat-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($et-chat-app-theme);
