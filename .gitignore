@@ -1,3 +1,4 @@
+dist
 deploy
 !config/deploy
 et_chat/js
