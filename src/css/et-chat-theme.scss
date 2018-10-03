@@ -1,0 +1,43 @@
+/*! et-chat-theme.scss - © 2018 ch4tp4ck - license: CC-BY-NC-2.0 */
+/* ********************************************************************************************************
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ *  LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+ *  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ *  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+ *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ***************************************************************************************************** */
+
+$et-chat-red: (
+  50:   #ffe0e0,
+  100:  #ff9494,
+  200:  #ff5c5c,
+  300:  #ff1414,
+  400:  #f50000,
+  500:  #d60000,
+  600:  #b70000,
+  700:  #990000,
+  800:  #7a0000,
+  900:  #5c0000,
+  A100: #ffe0e0,
+  A200: #ff9494,
+  A400: #f50000,
+  A700: #990000,
+  contrast: (
+    50:   $black-87-opacity,
+    100:  $black-87-opacity,
+    200:  $black-87-opacity,
+    300:  $black-87-opacity,
+    400:  white,
+    500:  white,
+    600:  white,
+    700:  $white-87-opacity,
+    800:  $white-87-opacity,
+    900:  $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: white,
+    A700: $white-87-opacity
+  )
+);
