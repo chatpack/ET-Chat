@@ -1,6 +1,6 @@
 @ECHO off
 
-SET Path=.\node_v8.12.0_win-x64
+SET Path=%CD%\node_v8.12.0_win-x64
 
 ECHO Environment:
 
