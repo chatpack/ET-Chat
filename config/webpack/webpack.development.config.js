@@ -26,6 +26,10 @@ const BundleAnalyzerPlugin = require( "webpack-bundle-analyzer" ).BundleAnalyzer
  *  Since webpack 4 use mini-css-extract-plugin for css
  */
 const MiniCssExtractPlugin = require( "mini-css-extract-plugin" );
+/**
+ *
+ */
+const UglifyJsPlugin = require( "uglifyjs-webpack-plugin" );
 
 // use function to access arguments passed to webpack
 module.exports = function( env, argv ) {
@@ -187,7 +191,7 @@ module.exports = function( env, argv ) {
       ]
     },
     optimization: {
-      minimize: true
+      minimize: true,
     }
   }
 }
