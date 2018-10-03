@@ -3,6 +3,7 @@ Entstanden aus dem Chatsystem ["ET – Chat v3.x"](http://www.sedesign.de/de_pro
 Die Copyrights für ["ET – Chat v3.x"](http://www.sedesign.de/de_produkte_chat-v3.html) liegen bei http://www.sedesign.de
 
 ## change-log (Änderungen)
+* setup initial angular files
 * branch master set to version 4.0.0
 * branched 3.0.7
 * fixed the style.css scripts
