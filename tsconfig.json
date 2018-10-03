@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target":                         "es6",
+    "module":                         "es2016",
+    "moduleResolution":               "node",
+    "sourceMap":                      true,
+    "emitDecoratorMetadata":          true,
+    "experimentalDecorators":         true,
+    "importHelpers":		              true,
+    "lib":                            [ "dom", "es2015" ],
+    "noImplicitAny":                  true,
+    "removeComments":                 false,
+    "suppressImplicitAnyIndexErrors": true
+  }
+}
