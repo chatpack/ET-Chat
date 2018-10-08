@@ -30,6 +30,7 @@
     "@angular/platform-browser-dynamic": "6.1.9",
     "@angular/router": "6.1.9",
     "@types/node": "10.11.3",
+    "angular-6-social-login-temp": "1.1.14",
     "awesome-typescript-loader": "5.2.1",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.7",
