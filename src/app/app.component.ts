@@ -2,7 +2,7 @@
  *
  *  app.component.ts
  *
- *  © 2018 ch4tp4ck
+ *  Â© 2018 ch4tp4ck
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
  *  LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
@@ -12,19 +12,18 @@
  *
  ******************************************************************************************************* */
 
-import { Component }				        from "@angular/core"; 
+import { Component }                from "@angular/core"; 
 
 import "../css/custom-theme.scss";
-import "./app.component.scss";
+import "../css/flex-layout.scss";
 
 @Component({
-  selector:			"et-chat",                         // replace "my-app" by template content
-  template:     require( "./app.component.html" )  // require resolves relative to current directory/file
+  selector:      "et-chat",                         // replace "et-chat" by template content
+  template:      require( "./app.component.html" )  // require resolves relative to current directory/file
 })
 export class AppComponent {
   /**
    *  Constructor
    */
-  constructor() {
-  }
+  constructor() { }
 }

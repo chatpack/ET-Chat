@@ -2,7 +2,7 @@
  *
  *  app.sidebar.component.ts
  *
- *  © 2018 ch4tp4ck
+ *  Â© 2018 ch4tp4ck
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
  *  LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
@@ -12,18 +12,21 @@
  *
  ******************************************************************************************************* */
 
-import { Component }	from '@angular/core';
-import { Router }			from '@angular/router';
+import { Component }              from "@angular/core";
+import { Router }                 from "@angular/router";
+
+import { AuthenticationService }  from "./services/auth.service";
 
 import "./app.sidebar.component.scss";
 
 @Component({
-  selector:			"app-sidebar",                            // replace "app-sidebar" by template content
-  template:     require( "./app.sidebar.component.html" ) // require resolves relative to current directory/file
+  selector:      "app-sidebar",                            // replace "app-sidebar" by template content
+  template:      require( "./app.sidebar.component.html" ) // require resolves relative to current directory/file
 })
 export class AppSidebarComponent { 
   
-  constructor( private router: Router ) { }
+  constructor( private router: Router, 
+               private authservice: AuthenticationService ) { }
 
   /**
    *  Called by sidebar elements to get output displayed in content area
