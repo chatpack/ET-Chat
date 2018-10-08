@@ -1,8 +1,8 @@
 /** ******************************************************************************************************
  *
- *  app-routing.component.ts
+ *  app-routing.module.ts
  *
- *  © 2018 ch4tp4ck
+ *  Â© 2018 ch4tp4ck
  *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
  *  LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
@@ -12,21 +12,27 @@
  *
  ******************************************************************************************************* */
 
-import { NgModule }               from '@angular/core';
-import { RouterModule }           from '@angular/router';
-import { Routes }                 from '@angular/router';
+import { NgModule }                   from "@angular/core";
+import { RouterModule }               from "@angular/router";
+import { Routes }                     from "@angular/router";
+
+import { AppDashboardComponent }      from "./app.dashboard.component";
+import { AppDefaultComponent }        from "./app.default.component";
+
+import { RoutingGuardService }        from "./services/guard.service";
 
 const appRoutes: Routes = [
-  { path: "", redirectTo: '/destination', pathMatch: 'full' }
+  { path: "dashboard",  component:   AppDashboardComponent, pathMatch:    "full" },
+  { path: "default",    component:   AppDefaultComponent,   pathMatch:    "full",   outlet: "page",
+                        canLoad:     [RoutingGuardService], canActivate:  [RoutingGuardService]},
+  { path: "",           redirectTo:  "/(page:default)",     pathMatch:    "full" },
+  { path: "**",         redirectTo:  "/default",            pathMatch:    "full" }
 ];
 
 
 @NgModule({
-  imports:  [
-              RouterModule.forRoot(
-                appRoutes /*,
-                { enableTracing: true } // <-- debugging purposes only */
-              )
+  imports:  [ // enableTracing: true <-- debugging purposes only.
+              RouterModule.forRoot( appRoutes, { enableTracing: true })
             ],
   exports:  [
               RouterModule
