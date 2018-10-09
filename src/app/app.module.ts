@@ -44,6 +44,8 @@ import { ErrorService }               from "./services/error.service";
 import { RoutingForewardService }     from "./services/foreward.service";
 import { RoutingGuardService }        from "./services/guard.service";
 
+import { ToolsModule }                from "./tools/tools.module";
+
 
 @NgModule({
   imports:      [ 
@@ -55,6 +57,7 @@ import { RoutingGuardService }        from "./services/guard.service";
                   AppRoutingModule,         // Add routing to the app. Note: Each module uses its child routing!
                   
                   AuthenticationModule,     // Add authentication module
+                  ToolsModule,              // Add pipes and stuff
 
                   // material controls
                   MatButtonModule,

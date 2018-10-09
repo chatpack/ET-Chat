@@ -26,6 +26,7 @@ import { MatInputModule }                           from "@angular/material/inpu
 import { LoginComponent }                           from "./auth.login.component";
 
 import { AuthenticationRoutingModule }              from "./auth-routing.module";
+import { ToolsModule }                              from "../tools/tools.module";
 
 @NgModule({
   imports:      [
@@ -33,6 +34,7 @@ import { AuthenticationRoutingModule }              from "./auth-routing.module"
                   FormsModule,
 
                   AuthenticationRoutingModule ,     // Add routing to module auth.
+                  ToolsModule,                      // Add pipes and stuff
 
                   MatButtonModule,
                   MatCardModule,
