@@ -10,6 +10,10 @@
     "lib":                            [ "dom", "es2015" ],
     "noImplicitAny":                  true,
     "removeComments":                 false,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "baseUrl":                        "src",
+    "paths":                          {
+                                        "@app/*": ["app/*"]
+                                      }
   }
 }
