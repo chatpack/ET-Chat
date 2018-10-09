@@ -69,16 +69,13 @@ auth-login {
       }
 
       div.right.layout-column {
-        > button {
+        > * {
           margin:         2px 0 2px 30px;
         }
         > div {
-          margin:         2px 0 2px 30px;
           text-align:     center;
         }
         > mat-form-field {
-          margin:         2px 0 2px 30px;
-
           .mat-form-field-wrapper {
             margin:       0 0 -14px 0;
           }

@@ -17,12 +17,14 @@
     </div>
     <div class="right layout-column flex-50">
       <mat-form-field>
-        <input matInput placeholder="{{ 'login' | i18n }}">
+        <input matInput placeholder="{{ 'login' | i18n }}*" [(ngModel)]="login.id" (change)="login.validateLogin()">
       </mat-form-field>
+      <mat-error *ngIf="login.iderror" class="footnote">{{ "mandatory" | i18n }}</mat-error>
       <mat-form-field>
-        <input matInput placeholder="{{ 'password' | i18n }}" type="password">
+        <input matInput placeholder="{{ 'password' | i18n }}*" [(ngModel)]="login.password" type="password" (change)="login.validatePassword()">
       </mat-form-field>
-      <button mat-flat-button color="primary">{{ "login" | i18n }}</button>
+      <mat-error *ngIf="login.passworderror" class="footnote">{{ "mandatory" | i18n }}</mat-error>
+      <button mat-flat-button color="primary" (click)="login.onLocalLogin()">{{ "login" | i18n }}</button>
     </div>
   </mat-card-content>
   <mat-card-content class="layout layout-row flex-100 auto-flex-basis">
@@ -46,14 +48,20 @@
       </div>
     </div>
     <div class="right layout-row flex-50">
-      <div class="flex-20 footnote" style="margin-top: 7px;">
+      <div class="flex-40 footnote" style="margin-top: 7px;">
         {{ "I accept" | i18n }}
       </div>
-      <div class="flex-40 footnote">
-        <mat-checkbox color="primary"><a href="/cookies" target="_blank">{{ "cookies" | i18n }}</a></mat-checkbox>
+      <div class="flex-30 footnote">
+        <mat-checkbox color="primary" [(ngModel)]="login.cookies" (change)="login.validateCookies()">
+          <a href="/cookies" target="_blank">{{ "cookies" | i18n }}*</a>
+        </mat-checkbox>
+        <mat-error *ngIf="login.cookieserror">{{ login.cookieserror | i18n }}</mat-error>
       </div>
-      <div class="flex-40 footnote">
-        <mat-checkbox color="primary"><a href="/tos" target="_blank">{{ "terms of service" | i18n }}</a></mat-checkbox>
+      <div class="flex-30 footnote">
+        <mat-checkbox color="primary" [(ngModel)]="login.tos" (change)="login.validateTOS()">
+          <a href="/tos" target="_blank">{{ "terms of service" | i18n }}*</a>
+        </mat-checkbox>
+        <mat-error *ngIf="login.toserror">{{ login.toserror | i18n }}</mat-error>
       </div>
     </div>
   </mat-card-content>

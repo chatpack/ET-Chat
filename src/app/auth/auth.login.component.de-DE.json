@@ -12,5 +12,7 @@
   "register!": "registrieren!",
   "forgotten password?": "passwort vergessen?",
   "login": "login",
-  "password": "passwort"
+  "password": "passwort",
+  "mandatory": "pflichtfeld",
+  "acceptance required": "einwilligung benötigt"
 }

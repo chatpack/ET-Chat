@@ -33,11 +33,82 @@ export class LoginComponent {
   /** prepare for i18n pipe optimization */
   // Webpack: loader will replace require statment
   public static i18n = { "de-DE": require( "./auth.login.component.de-DE.json" ) };
+
+  /** save credentials and validate local login form */
+  public login: any = null;
  
   constructor( private router: Router, 
                private authservice: AuthenticationService ) { 
 
     this.connectors = authservice.getConnectors();
+
+    this.login = {
+      id: null,
+      iderror: null,
+
+      password: null,
+      passworderror: null,
+      
+      cookies: false,
+      cookieserror: null,
+
+      tos: false,
+      toserror: null,
+
+      invalid: false,
+  
+      validateLogin: function() {
+        this.iderror = null;
+        if ( ! this.id ) {
+             this.iderror = "mandatory field";
+        }
+      },
+
+      validatePassword: function() {
+        this.passworderror = null;
+        if ( ! this.password ) {
+             this.passworderror = "mandatory field";
+        }
+      },
+
+      validateCookies: function() {
+        this.cookieserror = null;
+        if ( ! this.cookies ) {
+             this.cookieserror = "acceptance required";
+        }
+        this.send();
+      },
+
+      validateTOS: function() {
+        this.toserror = null;
+        if ( ! this.tos ) {
+             this.toserror = "acceptance required";
+        }
+        this.send();
+      },
+
+      onLocalLogin: function() {
+        this.validateLogin();
+        this.validatePassword();
+        this.validateCookies();
+        this.validateTOS();
+        this.send();
+      },
+      
+      send: function(): void {
+        if ( this.formIsValid()) {
+             // TODO: request login
+        }
+        else return;
+      },
+
+      formIsValid: function(): boolean {
+        return (( ! this.iderror )       &&
+                ( ! this.passworderror ) &&
+                ( ! this.cookieserror )  &&
+                ( ! this.toserror ));
+      },
+    }
   }
 
   signIn( service: string ): void {
