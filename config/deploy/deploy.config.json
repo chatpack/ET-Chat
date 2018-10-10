@@ -3,16 +3,14 @@
                "type":   "prepare"
   },
   "test":    {
-               "type":   "prepare",
-               "htdocs": "C:/Program Files/Apache/apache.2.4.34/htdocs",
-               "app":    "et_chat"
+               "htdocs":  "C:/Program Files/Apache/apache.2.4.34/htdocs/default",
+               "app":     "et_chat",
+               "title":   "ET-Chat (mg) - test environment"
   },
-  "example": {
-               "style":  {
-		                       "deploy": [ "black", "blue", "green", "white" ],
-		                       "dflt":   "white"
-		                     },
-                "htdocs": "C:/Program Files/Apache/2.4.35/htdocs",
-                "app":    "et_chat"
+  "file":    {
+               "type":   "prepare",
+               "htdocs":  "C:/Program Files/Apache/apache.2.4.34/htdocs/default",
+               "app":     "./",
+               "title":   "ET-Chat (mg) - local file"
   }
 }

@@ -13,9 +13,10 @@
     "chatpack (chatpack@outlook.de)"
   ],
   "scripts": {
-    "pack": "webpack  --config config/webpack/webpack.config.js",
-    "deploy-test": "node config/deploy/deploy --test",
-    "test": "npm run pack -- --mode=development"
+    "deploy": "node config/deploy/deploy",
+    "pack": "webpack --config config/webpack/webpack.config.js",
+    "test": "npm run pack -- --mode=development --deploy=test && npm run deploy -- --test",
+    "file": "npm run pack -- --mode=development --deploy=file && npm run deploy -- --file"
   },
   "devDependencies": {
     "@angular/animations": "6.1.9",

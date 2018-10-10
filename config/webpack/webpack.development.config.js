@@ -31,6 +31,13 @@ const UglifyJsPlugin = require( "uglifyjs-webpack-plugin" );
 module.exports = function( env, argv ) {
 
   const base = require( "./webpack.base.config" )( env, argv );
+  if ( ! argv.deploy ) {
+       console.error( "webpack: please specify deployment configuration using argument '--deploy=configname'" );
+       return { };
+  }
+  
+  // read in deployment configuration
+  let deployconfig  = require( "../deploy/deploy.config.json" )[ argv.deploy ];
   
   return {
     // The point or points to enter the application. At this point the application
@@ -96,7 +103,8 @@ module.exports = function( env, argv ) {
       // Use HtmlWebpackPlugin to generate index.html in projectroot/dist
       new HtmlWebpackPlugin({
         template:   base.sourceDirectory( "index.ejs" ),
-        title:      "Change Title",
+        title:      deployconfig.title || "Change Title",
+        basehref:   ( deployconfig.app ? "/" + deployconfig.app + "/" : "./" ),
         inject:     false,
         minify:     false,
         app:        {
