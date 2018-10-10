@@ -12,7 +12,8 @@
  *
  ******************************************************************************************************* */
 
-import { Component }              from '@angular/core';
+import { Location }               from "@angular/common";
+import { Component }              from "@angular/core";
 import { Router }                 from "@angular/router";
 
 import { AuthenticationService }  from "../services/auth.service";
@@ -126,12 +127,18 @@ export class LoginComponent {
   /** save credentials and validate local login form */
   public login: any = null;
  
-  constructor( private router: Router, 
+  constructor( private router: Router,
+               private location: Location,
                private authservice: AuthenticationService ) { 
 
     this.connectors = authservice.getConnectors();
 
     this.login = new LocalLoginData();
+  }
+  
+  /** transform path to a valid url segment */
+  public toUrl( path: string ): string {
+    return this.location.prepareExternalUrl( path );
   }
 
   public signIn( service: string ): void {

@@ -103,6 +103,7 @@ module.exports = function( env, argv ) {
       // Use HtmlWebpackPlugin to generate index.html in projectroot/dist
       new HtmlWebpackPlugin({
         template:   base.sourceDirectory( "index.ejs" ),
+        filename:   "index.html",
         title:      deployconfig.title || "Change Title",
         basehref:   ( deployconfig.app ? "/" + deployconfig.app + "/" : "./" ),
         inject:     false,
@@ -110,6 +111,41 @@ module.exports = function( env, argv ) {
         app:        {
                       version:  "4.0.0"
                     }
+      }),
+      new HtmlWebpackPlugin({
+        template:   base.sourceDirectory( "cookie.ejs" ),
+        filename:   "cookie.html",
+        basehref:   ( deployconfig.app ? "/" + deployconfig.app + "/" : "./" ),
+        inject:     false,
+        minify:     false
+      }),
+      new HtmlWebpackPlugin({
+        template:   base.sourceDirectory( "imprint.ejs" ),
+        filename:   "imprint.html",
+        basehref:   ( deployconfig.app ? "/" + deployconfig.app + "/" : "./" ),
+        inject:     false,
+        minify:     false
+      }),
+      new HtmlWebpackPlugin({
+        template:   base.sourceDirectory( "privacypolicy.ejs" ),
+        filename:   "privacypolicy.html",
+        basehref:   ( deployconfig.app ? "/" + deployconfig.app + "/" : "./" ),
+        inject:     false,
+        minify:     false
+      }),
+      new HtmlWebpackPlugin({
+        template:   base.sourceDirectory( "tos.ejs" ),
+        filename:   "tos.html",
+        basehref:   ( deployconfig.app ? "/" + deployconfig.app + "/" : "./" ),
+        inject:     false,
+        minify:     false
+      }),
+      new HtmlWebpackPlugin({
+        template:   base.sourceDirectory( "cookie.ejs" ),
+        filename:   "cookie.html",
+        basehref:   ( deployconfig.app ? "/" + deployconfig.app + "/" : "./" ),
+        inject:     false,
+        minify:     false
       }) /* ,
       new webpack.optimize.CommonsChunkPlugin({
         name: ['app', 'vendor', 'polyfills']
