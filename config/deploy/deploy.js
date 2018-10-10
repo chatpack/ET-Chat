@@ -28,6 +28,7 @@ const path    = require( "path" );
 
 const CHTPATH      = "./et_chat";
 const CHTSTYLEPATH = "./et_chat_styles";
+const DISTPATH     = "./dist";
 const DPLPATH      = "./deploy";
 
 const ERRMSG  = "Deployment destination not modified. Deployment failed.";
@@ -48,8 +49,7 @@ if ( ! deploycfg ) {
 }
 
 const DST         = path.resolve( DPLPATH, deploytype );
-const JSDST       = path.resolve( DST, JS );
-const JSSRC       = path.resolve( DPLPATH, JS );
+const DIST        = path.resolve( DISTPATH );
 const CHTSRC      = path.resolve( CHTPATH );
 const CHTSTYLESRC = path.resolve( CHTSTYLEPATH );
 
@@ -101,46 +101,13 @@ catch( err ) {
 
 /* ############################################################### **
  *
- *  Copy styles to deployment directory.
+ *  Copy distribution to deployment directory.
  *
  * ############################################################### */
-log( "Preparing deployment - copying styles." );
+log( "Preparing deployment - copying angular distribution." );
 try {
-    let styles = []
-    if (( deploycfg.style ) && ( deploycfg.style.deploy )) {
-          if ( Array.isArray( deploycfg.style.deploy )) {
-               styles = deploycfg.style.deploy;
-          }
-    }
-    
-    let stylesrc = null;
-    let styledst = null;
-    styles.forEach( function( style ) {
-      stylesrc = path.resolve( CHTSTYLESRC, style );
-      styledst = path.resolve( DST, "styles", style );
-      if ( fs.existsSync( stylesrc )) {
-           fse.copySync( stylesrc, styledst );
-      }
-    });
-
-    let dfltstyle = "white";
-    if (( deploycfg.style ) && ( deploycfg.style.dflt )) {
-          dfltstyle = deploycfg.style.dflt;
-    }
-    stylesrc = path.resolve( CHTSTYLESRC, dfltstyle );
-    styledst = path.resolve( DST, "styles", "default" );
-    if ( fs.existsSync( stylesrc )) {
-         fse.copySync( stylesrc, styledst );
-    }
-
-    // replace stylenames in default/style.css
-    let dfltcssfile = path.resolve( styledst, "style.css" );
-
-    let flecontent  = fs.readFileSync( dfltcssfile ).toString();
-        flecontent  = flecontent.replace( new RegExp( dfltstyle + "_", "g" ), "default_" );
-        flecontent  = flecontent.replace( new RegExp( "_" + dfltstyle, "g" ), "_default" );
-
-    fs.writeFileSync( dfltcssfile, flecontent, 'utf8' );
+    dbg( "... from: '" + DIST + "' to: '" + DST + "'" );
+    fse.copySync( DIST, DST );
 
     log( DONE );
 }
@@ -158,8 +125,8 @@ catch( err ) {
  * ############################################################### */
 log( "Preparing deployment - copying javascript files." );
 try {
-    dbg( "... from: '" + JSSRC + "' to: '" + JSDST + "'" );
-    fse.copySync( JSSRC, JSDST );
+    // there are no javascript files in material version
+    // copy dist files instead
     log( DONE );
 }
 catch( err ) {

@@ -1,25 +1,18 @@
 {
   "prepare": {
-      "type":   "prepare",
-      "style":  {
-		  "deploy":  [ ],
-		  "dflt":    "white"
-		}
+               "type":   "prepare"
   },
-  "test": {
-      "style":  {
-		  "deploy": [ ],
-		  "dflt":   "white"
-		},
-      "htdocs": "C:/Program Files/Apache/2.4.35/htdocs",
-      "app":    "et_chat"
+  "test":    {
+               "type":   "prepare",
+               "htdocs": "C:/Program Files/Apache/apache.2.4.34/htdocs",
+               "app":    "et_chat"
   },
   "example": {
-      "style":  {
-		  "deploy": [ "black", "blue", "green", "white" ],
-		  "dflt":   "white"
-		},
-      "htdocs": "C:/Program Files/Apache/2.4.35/htdocs",
-      "app":    "et_chat"
+               "style":  {
+		                       "deploy": [ "black", "blue", "green", "white" ],
+		                       "dflt":   "white"
+		                     },
+                "htdocs": "C:/Program Files/Apache/2.4.35/htdocs",
+                "app":    "et_chat"
   }
 }
