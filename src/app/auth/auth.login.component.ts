@@ -20,6 +20,95 @@ import { AuthenticationService }  from "../services/auth.service";
 // Webpack: loader will replace import
 import "./auth.login.component.scss";
 
+const ERROR_MANDATORY  = "mandatory field";
+const ERROR_ACCEPTANCE = "acceptance required";
+
+export class LocalLoginData {
+  /** id (username/email) data */
+  public id: string = null;
+  /** errormessage for id field */
+  public iderror: string = null;
+
+  /** password data */
+  public password: string = null;
+  /** errormessage for id field */
+  public passworderror: string = null;
+
+  /** accept cookies flag */
+  public cookies: boolean = false;
+  /** errormessage for cookies checkbox */
+  public cookieserror: string = null;
+
+  /** accept tos flag */
+  public tos: boolean = false;
+  /** errormessage for tos checkbox */
+  public toserror: string = null;
+
+  /**
+   *  Send valid data to server
+   *  Note: not accessible by view!
+   */
+  private send(): void {
+    if ( this.formIsValid()) {
+         // TODO: request login
+    }
+    else return;
+  }
+
+  /** on change login editfield */
+  public validateLogin(): void {
+    this.iderror = null;
+    if ( ! this.id ) {
+         this.iderror = ERROR_MANDATORY;
+    }
+  }
+
+  /** on change password editfield */
+  public validatePassword(): void {
+    this.passworderror = null;
+    if ( ! this.password ) {
+         this.passworderror = ERROR_MANDATORY;
+    }
+  }
+
+  /** on change cookies checkbox */
+  public validateCookies(): void {
+    this.cookieserror = null;
+    if ( ! this.cookies ) {
+         this.cookieserror = ERROR_ACCEPTANCE;
+    }
+    this.send();
+  }
+
+  /** on change tos checkbox */
+  public validateTOS(): void {
+    this.toserror = null;
+    if ( ! this.tos ) {
+         this.toserror = ERROR_ACCEPTANCE;
+    }
+    this.send();
+  }
+
+  /** on click login button */
+  public onLocalLogin(): void {
+    this.validateLogin();
+    this.validatePassword();
+    this.validateCookies();
+    this.validateTOS();
+    this.send();
+  }
+
+  /** validate form login data */
+  public formIsValid(): boolean {
+    return (( ! this.iderror )       &&
+            ( ! this.passworderror ) &&
+            ( ! this.cookieserror )  &&
+            ( ! this.toserror ));
+  }
+
+}
+
+
 @Component({
   selector:      "auth-login",                            // replace "auth-login" by template content (never used)
   template:      require( "./auth.login.component.html" ) // require resolves relative to current directory/file
@@ -42,80 +131,14 @@ export class LoginComponent {
 
     this.connectors = authservice.getConnectors();
 
-    this.login = {
-      id: null,
-      iderror: null,
-
-      password: null,
-      passworderror: null,
-      
-      cookies: false,
-      cookieserror: null,
-
-      tos: false,
-      toserror: null,
-
-      invalid: false,
-  
-      validateLogin: function() {
-        this.iderror = null;
-        if ( ! this.id ) {
-             this.iderror = "mandatory field";
-        }
-      },
-
-      validatePassword: function() {
-        this.passworderror = null;
-        if ( ! this.password ) {
-             this.passworderror = "mandatory field";
-        }
-      },
-
-      validateCookies: function() {
-        this.cookieserror = null;
-        if ( ! this.cookies ) {
-             this.cookieserror = "acceptance required";
-        }
-        this.send();
-      },
-
-      validateTOS: function() {
-        this.toserror = null;
-        if ( ! this.tos ) {
-             this.toserror = "acceptance required";
-        }
-        this.send();
-      },
-
-      onLocalLogin: function() {
-        this.validateLogin();
-        this.validatePassword();
-        this.validateCookies();
-        this.validateTOS();
-        this.send();
-      },
-      
-      send: function(): void {
-        if ( this.formIsValid()) {
-             // TODO: request login
-        }
-        else return;
-      },
-
-      formIsValid: function(): boolean {
-        return (( ! this.iderror )       &&
-                ( ! this.passworderror ) &&
-                ( ! this.cookieserror )  &&
-                ( ! this.toserror ));
-      },
-    }
+    this.login = new LocalLoginData();
   }
 
-  signIn( service: string ): void {
+  public signIn( service: string ): void {
     this.authservice.signIn( service );
   }
 
-  signOut(): void {
+  public signOut(): void {
     this.authservice.signOut();
   }
 }
