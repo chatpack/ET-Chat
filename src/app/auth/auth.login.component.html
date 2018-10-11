@@ -35,35 +35,49 @@
       <div class="flex-50 footnote"><a href="/recover" target="_blank">{{ "forgotten password?" | i18n }}</a></div>
     </div>
   </mat-card-content>
-  <mat-card-content class="layout layout-row flex-100 auto-flex-basis">
-    <div class="left layout-row flex-50">
-      <div class="flex-20">
-        <a href="{{ toUrl( '/imprint.html' ) }}" target="_blank">{{ "imprint" | i18n }}</a>
+  <ng-template [ngIf]="login.displayLastLine()">
+    <mat-card-content class="layout layout-row flex-100 auto-flex-basis">
+      <div class="left layout-row flex-50">
+        <div class="flex-20">
+          <ng-template [ngIf]="login.displayImprint()">
+            <a href="{{ imprintURL() }}" target="_blank">{{ "imprint" | i18n }}</a>
+          </ng-template>
+        </div>
+        <div class="flex-40">
+          <ng-template [ngIf]="login.displayTOS()">
+            <a href="{{ tosURL() }}" target="_blank">{{ "terms of service" | i18n }}</a>
+          </ng-template>
+        </div>
+        <div class="flex-30">
+          <ng-template [ngIf]="login.displayPrivacyPolicy()">
+            <a href="{{ privatepolicyURL() }}" target="_blank">{{ "privacy policy" | i18n }}</a>
+          </ng-template>
+        </div>
       </div>
-      <div class="flex-40">
-        <a href="{{ toUrl( '/tos.html' ) }}" target="_blank">{{ "terms of service" | i18n }}</a>
+      <div class="right layout-row flex-50">
+        <div class="flex-40 footnote" style="margin-top: 7px;">
+          <ng-template [ngIf]="login.requireAcceptCookies() || login.requireAcceptTOS()">
+            {{ "I accept" | i18n }}
+          </ng-template>
+        </div>
+        <div class="flex-30 footnote">
+          <ng-template [ngIf]="login.requireAcceptCookies()">
+            <mat-checkbox color="primary" [(ngModel)]="login.cookies" (change)="login.validateCookies()">
+              <a href="{{ cookieURL() }}" target="_blank">{{ "cookies" | i18n }}*</a>
+            </mat-checkbox>
+            <mat-error *ngIf="login.cookieserror">{{ login.cookieserror | i18n }}</mat-error>
+          </ng-template>
+        </div>
+        <div class="flex-30 footnote">
+          <ng-template [ngIf]="login.requireAcceptTOS()">
+            <mat-checkbox color="primary" [(ngModel)]="login.tos" (change)="login.validateTOS()">
+              <a href="{{ tosURL() }}" target="_blank">{{ "terms of service" | i18n }}*</a>
+            </mat-checkbox>
+            <mat-error *ngIf="login.toserror">{{ login.toserror | i18n }}</mat-error>
+          </ng-template>
+        </div>
       </div>
-      <div class="flex-30">
-        <a href="{{ toUrl( '/privacypolicy.html' ) }}" target="_blank">{{ "privacy policy" | i18n }}</a>
-      </div>
-    </div>
-    <div class="right layout-row flex-50">
-      <div class="flex-40 footnote" style="margin-top: 7px;">
-        {{ "I accept" | i18n }}
-      </div>
-      <div class="flex-30 footnote">
-        <mat-checkbox color="primary" [(ngModel)]="login.cookies" (change)="login.validateCookies()">
-          <a href="{{ toUrl( '/cookie.html' ) }}" target="_blank">{{ "cookies" | i18n }}*</a>
-        </mat-checkbox>
-        <mat-error *ngIf="login.cookieserror">{{ login.cookieserror | i18n }}</mat-error>
-      </div>
-      <div class="flex-30 footnote">
-        <mat-checkbox color="primary" [(ngModel)]="login.tos" (change)="login.validateTOS()">
-          <a href="{{ toUrl( '/tos.html' ) }}" target="_blank">{{ "terms of service" | i18n }}*</a>
-        </mat-checkbox>
-        <mat-error *ngIf="login.toserror">{{ login.toserror | i18n }}</mat-error>
-      </div>
-    </div>
-  </mat-card-content>
+    </mat-card-content>
+  </ng-template>
   <mat-card-footer>&copy; ET-Chat 3.0.7 Server by &lt; SEDesign /&gt;, &copy; ET-Chat Material Generation Client by ch4tp4ck</mat-card-footer>
 </mat-card>

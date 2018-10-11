@@ -11,7 +11,8 @@
  *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  ******************************************************************************************************* */
-const path = require( "path" );
+const path    = require( "path" );
+const webpack = require( "webpack" );
 
 /**
  *  Require "html-webpack-plugin" to generate index.htm from index.ejs
@@ -140,12 +141,27 @@ module.exports = function( env, argv ) {
         inject:     false,
         minify:     false
       }),
-      new HtmlWebpackPlugin({
-        template:   base.sourceDirectory( "cookie.ejs" ),
-        filename:   "cookie.html",
-        basehref:   ( deployconfig.app ? "/" + deployconfig.app + "/" : "./" ),
-        inject:     false,
-        minify:     false
+      new webpack.DefinePlugin({
+        // modify releative link/paths to cookie, etc. html pages.
+        "DEFINE_SERVICE_URL_PATH_COOKIES":       JSON.stringify( null ),
+        "DEFINE_SERVICE_URL_PATH_IMPRINT":       JSON.stringify( null ),
+        "DEFINE_SERVICE_URL_PATH_PPOLICY":       JSON.stringify( null ),
+        "DEFINE_SERVICE_URL_PATH_TOS":           JSON.stringify( null ),
+        // replace filenames of cookie, etc. html pages.
+        "DEFINE_SERVICE_FILENAME_COOKIES":       JSON.stringify( null ),
+        "DEFINE_SERVICE_FILENAME_IMPRINT":       JSON.stringify( null ),
+        "DEFINE_SERVICE_FILENAME_PPOLICY":       JSON.stringify( null ),
+        "DEFINE_SERVICE_FILENAME_TOS":           JSON.stringify( null ),
+        // switch links to cookie, imprint, private policy and tos pages on/off
+        "DEFINE_SERVICE_LINK_COOKIES":           JSON.stringify( true ),
+        "DEFINE_SERVICE_LINK_IMPRINT":           JSON.stringify( true ),
+        "DEFINE_SERVICE_LINK_PPOLICY":           JSON.stringify( true ),
+        "DEFINE_SERVICE_LINK_TOS":               JSON.stringify( true ),
+        // switch login requirements on/off
+        "DEFINE_SERVICE_REQUIRE_ACCEPT_COOKIES": JSON.stringify( true ),
+        "DEFINE_SERVICE_REQUIRE_ACCEPT_TOS":     JSON.stringify( true ),
+        "DEFINE_SERVICE_XXXXXXXXXXXXXXXXX":      JSON.stringify( null ),
+        "DUMMY_LAST": JSON.stringify( "last entry :-)" )
       }) /* ,
       new webpack.optimize.CommonsChunkPlugin({
         name: ['app', 'vendor', 'polyfills']

@@ -40,6 +40,7 @@ import { AuthenticationModule }       from "./auth/auth.module";
 import { LoginProviderConfiguration}  from "./providers/login.provider.configuration";
 
 import { AuthenticationService }      from "./services/auth.service";
+import { DefineService }              from "./services/define.service";
 import { ErrorService }               from "./services/error.service";
 import { RoutingForewardService }     from "./services/foreward.service";
 import { RoutingGuardService }        from "./services/guard.service";
@@ -76,6 +77,7 @@ import { ToolsModule }                from "./tools/tools.module";
                 ],
   providers:    [ // The following services kan be injected application-wide (kind of singletons)
                   AuthenticationService,    // Keeps track of authentication status
+                  DefineService,            // This is where webpack.DefinePlugin injects values
                   ErrorService,             // Send, log and request error data to/from this service
 
                   // The following services depend on the previous ones...

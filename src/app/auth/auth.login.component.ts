@@ -12,17 +12,25 @@
  *
  ******************************************************************************************************* */
 
-import { Location }               from "@angular/common";
-import { Component }              from "@angular/core";
-import { Router }                 from "@angular/router";
+import { Location }                   from "@angular/common";
+import { Component }                  from "@angular/core";
+import { Router }                     from "@angular/router";
 
-import { AuthenticationService }  from "../services/auth.service";
+import { AuthenticationService }      from "../services/auth.service";
+import { DefineService }              from "../services/define.service";
 
 // Webpack: loader will replace import
 import "./auth.login.component.scss";
 
+const EMPTY = "";
+
 const ERROR_MANDATORY  = "mandatory field";
 const ERROR_ACCEPTANCE = "acceptance required";
+
+const FILENAME_IMPRINT = "/imprint.html";
+const FILENAME_TOS     = "/tos.html";
+const FILENAME_COOKIE  = "/cookie.html";
+const FILENAME_PPOLICY = "/privacypolicy.html";
 
 export class LocalLoginData {
   /** id (username/email) data */
@@ -44,6 +52,63 @@ export class LocalLoginData {
   public tos: boolean = false;
   /** errormessage for tos checkbox */
   public toserror: string = null;
+
+  /** values injected via webpack.DefinePlugin */
+  private defines: DefineService = null;
+
+  /** constructor */
+  constructor( defines: DefineService ) {
+    this.defines = defines;
+    console.dir( defines );
+  }
+  
+  /**
+   *  Returns true, if last line which holds links and 
+   *  accepts should be displayed.
+   */
+  public displayLastLine(): boolean {
+    let retval: boolean = this.defines.link_imprint           ||
+                          this.defines.link_ppolicy           ||
+                          this.defines.link_tos               ||
+                          this.defines.require_accept_cookies ||
+                          this.defines.require_accept_tos;
+    return retval;
+  }
+
+  /**
+   *  Returns true, if imprint link should be displayed.
+   */
+  public displayImprint(): boolean {
+    return this.defines.link_imprint;
+  }
+
+  /**
+   *  Returns true, if privacy policy link should be displayed.
+   */
+  public displayPrivacyPolicy(): boolean {
+    return this.defines.link_ppolicy;
+  }
+
+  /**
+   *  Returns true, if imprint link should be displayed.
+   */
+  public displayTOS(): boolean {
+    return this.defines.link_tos;
+  }
+
+  /**
+   *  Returns true, if cookies must be accepted.
+   */
+  public requireAcceptCookies(): boolean {
+    return this.defines.require_accept_cookies;
+  }
+
+  /**
+   *  Returns true, if tos must be accepted.
+   */
+  public requireAcceptTOS(): boolean {
+    return this.defines.require_accept_tos;
+  }
 
   /**
    *  Send valid data to server
@@ -129,16 +194,45 @@ export class LoginComponent {
  
   constructor( private router: Router,
                private location: Location,
-               private authservice: AuthenticationService ) { 
+               private authservice: AuthenticationService,
+               private defines: DefineService ) { 
 
     this.connectors = authservice.getConnectors();
 
-    this.login = new LocalLoginData();
+    this.login = new LocalLoginData( this.defines );
   }
   
   /** transform path to a valid url segment */
-  public toUrl( path: string ): string {
+  public toURL( path: string ): string {
     return this.location.prepareExternalUrl( path );
+  }
+
+  /** returns the URL to the imprint page */
+  public imprintURL(): string {
+    let path = this.defines.url_path_imprint || EMPTY;
+    let file = this.defines.filename_imprint || FILENAME_IMPRINT;
+    return this.toURL( path + file );
+  }
+
+  /** returns the URL to the tos page */
+  public tosURL(): string {
+    let path = this.defines.url_path_tos || EMPTY;
+    let file = this.defines.filename_tos || FILENAME_TOS;
+    return this.toURL( path + file );
+  }
+
+  /** returns the URL to the cookie page */
+  public cookieURL(): string {
+    let path = this.defines.url_path_cookies || EMPTY;
+    let file = this.defines.filename_cookies || FILENAME_COOKIE;
+    return this.toURL( path + file );
+  }
+
+  /** returns the URL to the private policy page */
+  public privatepolicyURL(): string {
+    let path = this.defines.url_path_ppolicy || EMPTY;
+    let file = this.defines.filename_ppolicy || FILENAME_PPOLICY;
+    return this.toURL( path + file  );
   }
 
   public signIn( service: string ): void {
